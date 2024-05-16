@@ -1,6 +1,6 @@
 import { Container, Form, Section } from './SignUp.js'
 import { LogoFoodExplorer }from '../../components/Logo/Logo.jsx'
-import { Button } from '../../components/Button/Button.jsx'
+import { Button } from '../../components/Button/index.jsx'
 
 import { FiUser } from "react-icons/fi";
 import { RiLockPasswordLine } from "react-icons/ri";

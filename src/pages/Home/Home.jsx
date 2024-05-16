@@ -1,9 +1,17 @@
-import React from 'react'
+import { Header } from '../../components/Header'
+import { Container } from './Home'
 
-const Home = () => {
+export default function Home(){
   return (
-    <div>Home</div>
+    <Container>
+      <Header/>
+      <main>
+        <img src={homeFrame}/>
+
+      </main>
+
+    <Footer/>
+    </Container>
   )
 }
 
-export default Home

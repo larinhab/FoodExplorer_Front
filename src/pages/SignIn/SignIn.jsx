@@ -1,6 +1,6 @@
 import { Container, Form, Section } from './SignIn.js'
 import { LogoFoodExplorer }from '../../components/Logo/Logo.jsx'
-import { Button } from '../../components/Button/Button.jsx'
+import { Button } from '../../components/Button'
 
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineEmail } from "react-icons/md";
