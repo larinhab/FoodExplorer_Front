@@ -9,7 +9,7 @@ export const Container = styled.button`
     width: 100%;
     background-color: ${({ theme }) => theme.COLORS.TOMATO};
     
-    height: 48px;
+    height: 4.8rem;
     border: 0;
     padding: .75rem 2rem;
     border-radius: 10px;
@@ -21,5 +21,9 @@ export const Container = styled.button`
     &:disabled {
         opacity: 0.5;
         transition: 1s;
+    }
+
+    svg {
+        margin-right: 1rem;
     }
 `

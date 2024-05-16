@@ -2,57 +2,53 @@ import styled from "styled-components";
 import { Link } from "react-router-dom"
 
 export const Container = styled.header`
-    grid-area: header;
-    height: 7rem;
     width: 100%;
+    height: 8rem;
 
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
-    
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+    background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_700};
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    text-align: center;
     gap: 2rem;
-    padding: 0 10rem;
+    justify-content: space-between;
 
+    h2 {
+        font-family: Roboto;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+    }
 
-    > h1 {
-        width: 100%;
-        color:  ${({ theme }) => theme.COLORS.PINK};
-        cursor: pointer;
-        letter-spacing: 1.6px;
+    img {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+    }
+
+    button{
+        width: 216px;
     }
     
-
+    >.icons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 20rem;
+        gap: 2rem;
+    }
 `
 
-export const Search = styled.div`
+export const Search = styled.input`
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 300%;
-    padding: 1rem;
-    background-color:  ${({ theme }) => theme.COLORS.BACKGROUND_700};
-    color: ${({ theme }) => theme.COLORS.WHITE};
-`
+    height: 48px;
+    padding: 12px 14px;
+    gap: 14px;
 
-
-export const Logout = styled.button`
     border: none;
-    background: none;
-
-    >svg {
-        color: ${({ theme }) => theme.COLORS.PINK};
-        font-size: 2.25rem;
-    }   
-
-    >svg:hover {
-        color: ${({ theme }) => theme.COLORS.GRAY_100};
-        transition: 1s;
-    }
-
+    border-radius: .3125rem;
+    background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_900};
 `

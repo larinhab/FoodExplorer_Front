@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
-        <SignUp/>
+        <Home/>
     </ThemeProvider>
   </React.StrictMode>,
 )

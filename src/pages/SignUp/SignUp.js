@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    max-width: 100%;
+    width: 100%;
     height: 100vh;
-    
-    margin: auto;
-    
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 `
 export const Section = styled.div`
-    width: 500px;
-    max-height: 600px;
-    
+    width: 800px;
+    margin-right: 30rem;
+
     padding: 6rem;
     border-radius: 1rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
 
     background-color:  ${({ theme }) => theme.COLORS.DARK_BLUE_700};
 

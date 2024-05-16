@@ -1,6 +1,6 @@
 import { Container, Form, Section } from './SignUp.js'
-import { LogoFoodExplorer }from '../../components/Logo/Logo.jsx'
-import { Button } from '../../components/Button/index.jsx'
+import { LogoFoodExplorer }from '../../components/Logo'
+import { Button } from '../../components/Button'
 
 import { FiUser } from "react-icons/fi";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -32,7 +32,7 @@ export default function SignUp(){
           </Form>
 
           <Form>
-            <label for='email'><MdOutlineEmail size='2rem'/> Email</label>
+            <label for='email'><MdOutlineEmail size='2rem'/> E-mail</label>
             <input 
               name='email'
               placeholder='Exemplo: exemplo@exemplo.com.br' 

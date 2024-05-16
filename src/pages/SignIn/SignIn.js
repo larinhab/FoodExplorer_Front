@@ -1,18 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    max-width: 100%;
+    width: 100%;
     height: 100vh;
-    
     margin: auto;
-    
+     
     display: flex;
     align-items: center;
     justify-content: space-between;
 `
 export const Section = styled.div`
-    width: 500px;
-    max-height: 600px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    margin-right: 30rem; 
     
     padding: 6rem;
     border-radius: 1rem;
@@ -39,7 +42,7 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: start;
+    justify-content: center;
 
     margin-bottom: 2rem;
 
