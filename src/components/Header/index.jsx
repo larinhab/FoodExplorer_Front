@@ -8,7 +8,11 @@ import { IoIosSearch } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
 import { RxExit } from "react-icons/rx";
 
+import { useAuth } from '../../hooks/auth';
+
 export function Header({children}){
+  const { signOut } = useAuth()
+
   return (
     <Container>
       <LogoFoodExplorer/>
@@ -21,8 +25,8 @@ export function Header({children}){
       <Button title="Pedidos" icon={ FaCartPlus }> </Button>
 
     <div className='icons'>
-        <FaUserEdit size={32} /> 
-        <RxExit size={32} />
+        <FaUserEdit size={32} onClick={""}/> 
+        <RxExit size={32} onClick={ signOut }/>
     </div>
 </Container>
   )

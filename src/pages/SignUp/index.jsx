@@ -10,12 +10,12 @@ import { Link, useNavigate } from "react-router-dom"
 import { api } from '../../services/api.js'
 import { useState } from 'react';
 
-export default function SignUp(){
+export function SignUp(){
     const [name, setName] = useState("");  
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState(""); 
 
-    //const navigate = useNavigate()
+    const navigate = useNavigate()
 
     function handleSignUp(){
       if(!name || !email || !password){
@@ -25,7 +25,7 @@ export default function SignUp(){
       api.post("/users", { name, email, password })
         .then(() => {
             alert("Usuário cadastrado com sucesso!")
-         //   navigate("/")
+            navigate("/")
         })
         .catch(error => {
             if(error.message){
@@ -74,7 +74,7 @@ export default function SignUp(){
 
         <Button title="Criar conta" onClick={handleSignUp}></Button>
 
-        {/* <Link to="/">Já tenho uma conta</Link> */ }
+         <Link to="/">Já tenho uma conta</Link> 
           
         </Section>
     </Container>

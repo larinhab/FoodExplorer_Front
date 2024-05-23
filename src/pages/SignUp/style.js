@@ -29,6 +29,7 @@ export const Section = styled.div`
     }
 
     >p {
+        text-decoration: none;
         font-size: 14px;
         margin-top: 2rem;
     }
