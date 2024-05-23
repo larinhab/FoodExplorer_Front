@@ -7,15 +7,18 @@ import theme from './styles/theme'
 import  GlobalStyles from './styles/global.js'
 
 import './index.css'
-import SignUp from './pages/SignUp/SignUp.jsx'
-import SignIn from './pages/SignIn/SignIn.jsx'
-import Home from './pages/Home/Home.jsx'
+import { AuthProvider } from './hooks/auth.jsx'
+import { Routes } from './routes'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
-        <Home/>
+        
+        <AuthProvider>
+          <Routes></Routes>
+        </AuthProvider>
+
     </ThemeProvider>
   </React.StrictMode>,
 )
