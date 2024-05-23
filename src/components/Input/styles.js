@@ -5,14 +5,13 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_900};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
   
-  width: 100%;
+  width: 300%;
   height: 4.8rem;
-  padding: 2rem;
   
   border-radius: 0.8rem;
   
   display: flex;
-  align-items: center;
+  align-items: center;  
   text-align: center;
 
   svg {

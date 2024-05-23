@@ -1,4 +1,4 @@
-import { Container } from './Home'
+import { Container } from './style'
 import homeFrame from '../../assets/outras/home_frame.png'
 
 import { Header } from '../../components/Header'

@@ -1,16 +1,24 @@
-import { Container, Form, Section } from './SignIn.js'
-import { LogoFoodExplorer }from '../../components/Logo'
-import { Button } from '../../components/Button'
+import { Container, Form, Section } from './style.js'
+import { LogoFoodExplorer }from '../../components/Logo/index.jsx'
+import { Button } from '../../components/Button/index.jsx'
 
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineEmail } from "react-icons/md";
 
-import { useState } from 'react';
+import { useAuth } from '../../hooks/auth.jsx';
+
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function SignIn(){
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const { signIn } = useAuth()
+
+  function handleSignIn(){
+    signIn({ email, password })
+  }
 
   return (
     <Container>
@@ -38,8 +46,10 @@ export default function SignIn(){
           </Form>
         </div>
 
-        <Button title="Entrar" onClick={''}></Button>
-        <p>Crie uma conta</p>
+        <Button title="Entrar" onClick={ handleSignIn }></Button>
+
+        <Link to="/register">Crie uma conta</Link>
+        
         </Section>
     </Container>
   )

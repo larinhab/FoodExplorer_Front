@@ -5,6 +5,7 @@ export const Container = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+
         
         cursor: pointer;
         
@@ -18,4 +19,5 @@ export const Container = styled.div`
             
             margin-left: 2rem;
         }
+
 `

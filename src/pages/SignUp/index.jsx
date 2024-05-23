@@ -1,17 +1,40 @@
-import { Container, Form, Section } from './SignUp.js'
-import { LogoFoodExplorer }from '../../components/Logo'
-import { Button } from '../../components/Button'
+import { LogoFoodExplorer }from '../../components/Logo/index.jsx'
+import { Container, Form, Section } from './style.js'
+import { Button } from '../../components/Button/index.jsx'
 
-import { FiUser } from "react-icons/fi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineEmail } from "react-icons/md";
+import { FiUser } from "react-icons/fi";
 
+import { Link, useNavigate } from "react-router-dom"
+import { api } from '../../services/api.js'
 import { useState } from 'react';
 
 export default function SignUp(){
     const [name, setName] = useState("");  
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState(""); 
+
+    //const navigate = useNavigate()
+
+    function handleSignUp(){
+      if(!name || !email || !password){
+        return alert("Todos os campos são obrigatórios")
+      }
+
+      api.post("/users", { name, email, password })
+        .then(() => {
+            alert("Usuário cadastrado com sucesso!")
+         //   navigate("/")
+        })
+        .catch(error => {
+            if(error.message){
+                alert(error.message)
+            }else{
+                alert("Não foi possível cadastrar")
+            }
+        })
+    }
 
   return (
     <Container>
@@ -49,8 +72,10 @@ export default function SignUp(){
           </Form>
         </div>
 
-        <Button title="Criar conta" onClick={""}></Button>
-        <p>Já tenho uma conta</p>
+        <Button title="Criar conta" onClick={handleSignUp}></Button>
+
+        {/* <Link to="/">Já tenho uma conta</Link> */ }
+          
         </Section>
     </Container>
   )

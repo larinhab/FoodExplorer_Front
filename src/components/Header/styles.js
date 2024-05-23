@@ -10,8 +10,10 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     text-align: center;
-    gap: 2rem;
     justify-content: space-between;
+    
+    padding: 0 30rem;
+    gap: 2rem;
 
     h2 {
         font-family: Roboto;
@@ -26,15 +28,15 @@ export const Container = styled.header`
         margin: 0;
     }
 
-    button{
-        width: 216px;
+    svg{
+        cursor: pointer;
     }
-    
+
     >.icons {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 20rem;
+        margin: 0 2rem;
         gap: 2rem;
     }
 `
