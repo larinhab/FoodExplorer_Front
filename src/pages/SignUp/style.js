@@ -28,10 +28,11 @@ export const Section = styled.div`
         margin-bottom: 2rem;
     }
 
-    >p {
+    >p, a {
         text-decoration: none;
-        font-size: 14px;
+        font-size: 16px;
         margin-top: 2rem;
+        color: white;
     }
 `
 

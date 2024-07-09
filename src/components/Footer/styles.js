@@ -20,7 +20,6 @@ export const Container = styled.footer`
 
     h2{
         font-size: 1.5rem;
-        margin-left: 1rem;
     }
 
     img {

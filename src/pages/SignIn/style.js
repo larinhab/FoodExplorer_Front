@@ -30,9 +30,11 @@ export const Section = styled.div`
         margin-bottom: 2rem;
     }
 
-    >p {
-        font-size: 14px;
+    >p, a {
+        font-size: 16px;
         margin-top: 2rem;
+        text-decoration: none;
+        color: white;
     }
 `
 

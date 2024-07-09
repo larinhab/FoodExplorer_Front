@@ -22,7 +22,7 @@ export default createGlobalStyle`
         text-decoration: none;
     }
 
-    button {
+    button, a {
         cursor: pointer;
         color:  ${({ theme }) => theme.COLORS.TOMATO_100};
     }

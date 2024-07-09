@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: end;
 
         
         cursor: pointer;
@@ -20,4 +21,14 @@ export const Container = styled.div`
             margin-left: 2rem;
         }
 
+        > p {
+        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+    }
+`
+
+export const Section = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
 `

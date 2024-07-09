@@ -7,6 +7,7 @@ import { FaCartPlus } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
 import { RxExit } from "react-icons/rx";
+import { LuPlus } from "react-icons/lu";
 
 import { useAuth } from '../../hooks/auth';
 
@@ -21,7 +22,10 @@ export function Header({children}){
              placeholder="Busque por pratos ou ingredientes">
       </Input>
 
-
+      {/* if(verifyAdminRole) {
+        <Button title="Novo prato" icon={ <LuPlus /> }> </Button>
+      } 
+      */}
       <Button title="Pedidos" icon={ FaCartPlus }> </Button>
 
     <div className='icons'>
