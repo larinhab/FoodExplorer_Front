@@ -1,40 +1,95 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    background-color: ${({ theme }) => theme.COLORS.DARK_200};
+    min-height: 100dvh;
+    margin: 0 25rem;
 
-    padding: 2rem;
-    height: 100%;
-
-    cursor: pointer;
-
-    img {
-        width: 13rem;
-        height: 13rem;
-        object-fit: cover;
-        border-radius: 100%;
-        }
-
-    > h2 {
-        font-size: 14px;
+    >h2 {
+        font-size: 32px;
+        font-family: Poppins;
+        font-weight: 500;
+        
+        margin: 2rem 0;
+        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_300};
     }
+    
 
-    .swiper-container {
-        width: 100%;
-
+    swiper-slide{
         display: flex;
-        align-items: center;
         justify-content: center;
-    }
-
-    .swiper-slide{
-        width: 500px;
-        height: 300px;
-
-        display: flex;
         align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_200};
+
     }
 
     
+    .plate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+        padding: 2rem;
+        
+        width: 500px;
+        height: 600px;
+
+    }
+
+    .plate-info{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        width: 100%;
+        
+        gap: 1rem;
+        margin: 1em;
+        padding: 2rem;
+        
+        cursor: pointer;
+
+        img {
+            width: 176px;
+            height: 176px;
+            object-fit: cover;
+            border-radius: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .plate-name {
+            display: flex;
+            align-items: center;
+            
+            font-family: Poppins;
+            font-size: 24px;
+            font-weight: 700;
+        }   
+        .plate-price {
+            font-family: Roboto;
+            font-size: 32px;
+            color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+            margin-top: 4rem;
+        }
+        .plate-description{
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 400;
+            overflow: auto;
+            text-align: center;
+        }
+
+
+    }
+
+    .add-cart{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
 `

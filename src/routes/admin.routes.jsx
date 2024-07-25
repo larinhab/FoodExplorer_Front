@@ -6,7 +6,7 @@ export function AdminRoutes(){
         <Routes>
              <Route path="/" element={<Home />} />
              <Route path="/profile" element={<Profile />} />
-             <Route path="/plateview/:id" element={<PlateView />} />
+             <Route path="/plates/:id" element={<Details />} />
              <Route path="/cart" element={<Cart />} />
 
              <Route path="/newplate" element={<NewPlate />} />
