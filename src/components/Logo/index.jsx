@@ -1,13 +1,19 @@
-import React from 'react'
 import polygno from '../../assets/svg/polygno.svg'
+import { useNavigate } from 'react-router-dom'
 import { Container, Section } from './styles'
+import React from 'react'
 
 export function LogoFoodExplorer(){
+      const navigate = useNavigate()
+      
+      function handleBack(){
+        navigate(-1)
+      }
   return (
-    <Container>
+    <Container to="/" onClick={ handleBack }>
         <Section>            
-            <img src={polygno}/>
-            <h2>food explorer</h2>
+            <img className="logo-img" src={polygno}/>
+            <p className='logo-title'>food explorer</p>
         </Section>
   
       {/* if(verifyAdminRole) {

@@ -39,7 +39,7 @@ export function Card() {
         navigation='true'
     >
         {items.map((item) =>(
-            <swiper-slide key={item.id} onClick={() => handleDetails(item.id) }>
+            <swiper-slide key={item.id}>
                 <div className="plate">
 
                     <div className="plate-info">
@@ -47,6 +47,7 @@ export function Card() {
                         <img
                             src={item.image}
                             alt={`Imagem do ${item.category}`}
+                            onClick={() => handleDetails(item.id) }
                         />
                         <p className="plate-name">{item.name}  <MdKeyboardArrowRight size={18} /></p>
                         <p className="plate-description">{item.description}</p>

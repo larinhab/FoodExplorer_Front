@@ -5,7 +5,7 @@ export const Container = styled.div`
     width: 100%;
     margin: auto;
  
-    img {
+    .home-img {
         display: flex;
         align-items: center;
         justify-content: center;

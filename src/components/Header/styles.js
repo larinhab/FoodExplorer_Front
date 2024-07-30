@@ -15,19 +15,6 @@ export const Container = styled.header`
     padding: 0 30rem;
     gap: 2rem;
 
-    h2 {
-        font-family: Roboto;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 700;
-    }
-
-    img {
-        width: 30px;
-        height: 30px;
-        margin: 0;
-    }
-
     svg{
         cursor: pointer;
     }

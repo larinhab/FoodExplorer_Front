@@ -7,24 +7,17 @@ export const Container = styled.footer`
   background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_700};
 
   display: flex;
-  align-items: center;
   justify-content: space-around;
+  align-items: center;
   gap: 30rem;
 
   p {
     font-size: 1.2rem;
     font-family: "Poppins";
   }
+
   >div {
     filter: contrast(0);
-
-    h2{
-        font-size: 1.5rem;
-    }
-
-    img {
-      width: 2rem;
-    }
   }
 
 `

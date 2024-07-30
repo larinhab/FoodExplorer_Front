@@ -7,20 +7,25 @@ export const Container = styled.div`
         justify-content: center;
         align-items: end;
 
-        
-        cursor: pointer;
-        
-        >h2{
+        .logo-title {
             color: ${({ theme }) => theme.COLORS.WHITE};
 
             font-family: Roboto;
-            font-size: 42px;
+            font-size: 24px;
             font-weight: 700;
             line-height: normal;
             
-            margin-left: 2rem;
+            margin-left: 1rem;
         }
+         
+        .logo-img {  
+            width: 30px;
+            height: 30px;
+            margin: 0;
+        }
+        
 
+        cursor: pointer;
         > p {
         color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
     }
@@ -29,6 +34,7 @@ export const Container = styled.div`
 export const Section = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: row;
-    gap: 1rem;
+
 `

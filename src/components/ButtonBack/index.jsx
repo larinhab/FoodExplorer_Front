@@ -1,5 +1,5 @@
+import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi";
 import { Container } from "./styles.js";
 
 
@@ -14,8 +14,8 @@ export function ButtonBack() {
         <Container 
         to="/"
         onClick={ handleBack }>
-            <FiArrowLeft></FiArrowLeft>
-            <p>Voltar</p>
+            <MdKeyboardArrowLeft/>
+            <p>voltar</p>
         </Container>
     )
 }

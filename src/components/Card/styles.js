@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     min-height: 100dvh;
-    margin: 0 25rem;
+    margin: 100px 200px;
+    padding: 0 10rem;
 
-    >h2 {
+    > h2 {
         font-size: 32px;
         font-family: Poppins;
         font-weight: 500;
@@ -23,7 +24,6 @@ export const Container = styled.div`
 
     }
 
-    
     .plate {
         display: flex;
         justify-content: center;
@@ -48,8 +48,6 @@ export const Container = styled.div`
         gap: 1rem;
         margin: 1em;
         padding: 2rem;
-        
-        cursor: pointer;
 
         img {
             width: 176px;
@@ -57,6 +55,8 @@ export const Container = styled.div`
             object-fit: cover;
             border-radius: 100%;
             margin-bottom: 1rem;
+                    
+            cursor: pointer;
         }
 
         .plate-name {

@@ -9,12 +9,10 @@ export function Home(){
   return (
     <Container>
       <Header/>
+      
       <main>
-        <img src={homeFrame}/>
-
-
-        <Card>
-        </Card>
+        <img className='home-img' src={homeFrame}/>
+          <Card/>
       </main>
 
     <Footer/>

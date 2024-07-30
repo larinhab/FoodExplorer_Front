@@ -6,18 +6,18 @@ export const Container = styled(Link)`
     display: flex;
     align-items: center;
     justify-items: center;
-    margin: 0 10rem;
+    text-align: center;
+    margin: 0 20%;
 
-    color: ${({ theme }) => theme.COLORS.PINK};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
     background: transparent;
     
-    font-size: 16px;
+    font-size: 32px;
     border: none;
     text-decoration: none;
 
     > p {
-        padding-left: 0.5rem;
-        font-size: 1.2rem;
+        font-size: 24px;
         margin: 3rem 0;
     }
 `
