@@ -16,9 +16,21 @@ export const Container = styled.div`
         gap: 3rem;
     }
 
+        .plate-info{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+
+            gap: 3rem;
+            
+            width: 600px;
+            margin-left: 4rem;
+        }
+
         .plate-image {
-            width: 350px;
-            height: 350px;
+            width: 380px;
+            height: 380px;
         }
     
         .plate-name {        
@@ -26,8 +38,6 @@ export const Container = styled.div`
             font-size: 40px;
             font-style: normal;
             font-weight: 500;
-
-            margin-bottom: 2rem;
         }
         
         .plate-description {

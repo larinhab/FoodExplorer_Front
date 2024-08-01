@@ -1,25 +1,29 @@
 import { Container } from "./styles";
 import { Button } from '../Button'
 import { ItensCount } from '../ItensCount'
-import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 
 import { data } from "../../utilis/data";
 
-import { register } from 'swiper/element/bundle';
-import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
 import 'swiper/css/bundle'
+import { register } from 'swiper/element/bundle';
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { LuHeart } from "react-icons/lu";
+import { LuClipboardEdit } from "react-icons/lu";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
+import { useAuth } from '../../hooks/auth'
+import { USER_ROLE } from '../../utilis/roles.js'
 import { useCart } from "../../context/CartContext";
 
 register();
 
 export function Card() {
     const [countValue, setCountValue] = useState(1);
+    const { user } = useAuth()
     const { addToCart } = useCart()
     const navigate = useNavigate()
 
@@ -34,6 +38,10 @@ export function Card() {
     const handleDetails = (id) => {
         navigate(`plates/${id}`)
     }
+
+    const handleEditPlate = () => {
+        navigate(`/editplate`)
+      }
 
 
     const renderSwiper = (items) => (
@@ -50,7 +58,11 @@ export function Card() {
                 <div className="plate">
 
                     <div className="plate-info">
-                        <LuHeart size={32} style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer' }}/>
+                        {user && user.role === 'admin' ? (
+                                <LuClipboardEdit size={32} style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer'}}></LuClipboardEdit>
+                            ) : (
+                                <LuHeart size={32} style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer' }}/>
+                            )}
                         <img
                             src={item.image}
                             alt={`Imagem do ${item.category}`}
@@ -63,10 +75,14 @@ export function Card() {
                 
 
                     <div className="add-cart">
-                        <ItensCount onCountChange={ () => handleCountChange }></ItensCount>
-                            <Button 
-                                title="Incluir" 
-                                onClick={() => handleAddToCart(item)}></Button>
+                        {user && user.role === 'admin' ? (
+                                <Button title="Deletar" onClick={ handleEditPlate }></Button>
+                            ) : (
+                                <>
+                                <ItensCount onCountChange={ handleCountChange }></ItensCount>
+                                <Button title="Incluir" onClick={() => handleAddToCart(item)}></Button>
+                            </>
+                            )}
                     </div>
                     </div>
                 

@@ -79,8 +79,12 @@ export function Cart() {
             {cartItems.length > 0 && (
                 <div className='cart-closing'>
                     <p>Total: {totalFormatted} </p>
-                <Button title='Pagamento' icon={ BsFillCartCheckFill } onClick={ handlePayment }></Button>
-                <Button title='Limpar carrinho' icon={ BsCartXFill } onClick={ clearCart }></Button>
+                        <Button title='Pagamento' 
+                                icon={ BsFillCartCheckFill }
+                                onClick={ handlePayment }></Button>
+                        <Button title='Limpar carrinho' 
+                                icon={ BsCartXFill } 
+                                onClick={ clearCart }></Button>
                 </div>
             )}
                 </div>

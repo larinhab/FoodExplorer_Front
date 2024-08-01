@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom"
 
 export const Container = styled.header`
     width: 100%;
@@ -28,20 +27,8 @@ export const Container = styled.header`
     }
 
     button{
-        width: 20%;
+        width: 30%;
+        font-size: 14px;
+        font-weight: 500;
     }
-`
-
-export const Search = styled.input`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: 48px;
-    padding: 12px 14px;
-    gap: 14px;
-
-    border: none;
-    border-radius: .3125rem;
-    background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_900};
 `

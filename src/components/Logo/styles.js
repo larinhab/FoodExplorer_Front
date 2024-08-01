@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-        //width: 100%;
+       
+        
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: end;
 
         .logo-title {
+            width: 150px;
+            
             color: ${({ theme }) => theme.COLORS.WHITE};
-
             font-family: Roboto;
             font-size: 24px;
             font-weight: 700;

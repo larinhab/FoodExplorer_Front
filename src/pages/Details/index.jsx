@@ -1,15 +1,17 @@
 import { Container } from './style.js'
+
 import { useParams } from 'react-router-dom'
-import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../hooks/auth.jsx';
+import { useState, useEffect, useCallback } from "react";
+
+import { useCart } from "../../context/CartContext";
 
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Button } from '../../components/Button/index.jsx';
 import { ButtonBack } from '../../components/ButtonBack/index.jsx'
 import { ItensCount } from '../../components/ItensCount/index.jsx';
-
-import { useCart } from "../../context/CartContext";
 
 import { data } from "../../utilis/data";
 
@@ -19,6 +21,7 @@ export function Details() {
     const navigate = useNavigate()
     const { addToCart } = useCart()
     const { id } = useParams()
+    const { user } = useAuth()
 
     const item = Object.values(data)
     .flat() 
@@ -35,6 +38,10 @@ export function Details() {
     const handleCountChange = useCallback((newValue) => {
         setCountValue(newValue);
       }, [])
+
+      const handleEditPlate = () => {
+        navigate(`/editplate`)
+      }
 
     return(
         <Container>
@@ -53,10 +60,17 @@ export function Details() {
                         <p className="plate-description">{item.description}</p>
 
                     <div className="add-cart">
-                        <ItensCount onCountChange={ handleCountChange }></ItensCount>
-                            <Button 
-                                title={`Incluir - R$ ${item.price}`} 
-                                onClick={() => handleAddToCart(item)}></Button>
+                        {user && user.role === 'admin' ? (
+                                <>
+                                    <Button title="Excluir" onClick={ ''/**handleDeletePlate**/ }></Button>
+                                    <Button title="Editar prato" onClick={ handleEditPlate }></Button>
+                                </>
+                            ) : (
+                                <>
+                                    <ItensCount onCountChange={ handleCountChange }></ItensCount>
+                                    <Button title={`Incluir - R$ ${item.price}`} onClick={() => handleAddToCart(item)}></Button>
+                                </>
+                    )}
                     </div>
                 </div>
                 </div>
