@@ -4,13 +4,13 @@ import { Link } from "react-router-dom"
 export const Container = styled.header`
     width: 100%;
     height: 8rem;
-
+    
     background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_700};
 
     display: flex;
     align-items: center;
-    text-align: center;
     justify-content: space-between;
+    text-align: center;
     
     padding: 0 30rem;
     gap: 2rem;
@@ -25,6 +25,10 @@ export const Container = styled.header`
         align-items: center;
         margin: 0 2rem;
         gap: 2rem;
+    }
+
+    button{
+        width: 20%;
     }
 `
 

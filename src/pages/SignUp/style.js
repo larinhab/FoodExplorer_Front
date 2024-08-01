@@ -7,10 +7,11 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    gap: 400px;
 `
 export const Section = styled.div`
     width: 800px;
-    margin-right: 30rem;
 
     padding: 6rem;
     border-radius: 1rem;

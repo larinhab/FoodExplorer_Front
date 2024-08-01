@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { Button } from '../Button'
 import { ItensCount } from '../ItensCount'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { data } from "../../utilis/data";
@@ -14,15 +14,22 @@ import 'swiper/css/bundle'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { LuHeart } from "react-icons/lu";
 
+import { useCart } from "../../context/CartContext";
+
 register();
 
 export function Card() {
     const [countValue, setCountValue] = useState(1);
+    const { addToCart } = useCart()
     const navigate = useNavigate()
 
-    const handleCountChange = (newValue) => {
-        setCountValue(newValue);
-      };
+      const handleCountChange = (newValue) => {
+          setCountValue(newValue);
+      }
+
+      const handleAddToCart = useCallback((item) => {
+        addToCart({ ...item, quantity: countValue || 1 }); 
+      }, [])
 
     const handleDetails = (id) => {
         navigate(`plates/${id}`)
@@ -43,7 +50,7 @@ export function Card() {
                 <div className="plate">
 
                     <div className="plate-info">
-                        <LuHeart size={32} style={{ position: 'absolute', top: '40', right: '70' }}/>
+                        <LuHeart size={32} style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer' }}/>
                         <img
                             src={item.image}
                             alt={`Imagem do ${item.category}`}
@@ -56,8 +63,10 @@ export function Card() {
                 
 
                     <div className="add-cart">
-                        <ItensCount onCountChange={ handleCountChange }></ItensCount>
-                            <Button title="Incluir"></Button>
+                        <ItensCount onCountChange={ () => handleCountChange }></ItensCount>
+                            <Button 
+                                title="Incluir" 
+                                onClick={() => handleAddToCart(item)}></Button>
                     </div>
                     </div>
                 

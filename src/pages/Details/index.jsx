@@ -1,6 +1,6 @@
 import { Container } from './style.js'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Header } from '../../components/Header'
@@ -9,13 +9,17 @@ import { Button } from '../../components/Button/index.jsx';
 import { ButtonBack } from '../../components/ButtonBack/index.jsx'
 import { ItensCount } from '../../components/ItensCount/index.jsx';
 
+import { useCart } from "../../context/CartContext";
+
 import { data } from "../../utilis/data";
 
 
 export function Details() {
     const [countValue, setCountValue] = useState(1);
     const navigate = useNavigate()
+    const { addToCart } = useCart()
     const { id } = useParams()
+
     const item = Object.values(data)
     .flat() 
     .find((item) => item.id === parseInt(id));
@@ -24,9 +28,13 @@ export function Details() {
         return <div>Prato não encontrado</div>
     }
 
-    const handleCountChange = (newValue) => {
+    const handleAddToCart = useCallback((item) => {
+        addToCart({ ...item, quantity: countValue }); 
+      }, [])
+
+    const handleCountChange = useCallback((newValue) => {
         setCountValue(newValue);
-      };
+      }, [])
 
     return(
         <Container>
@@ -46,7 +54,9 @@ export function Details() {
 
                     <div className="add-cart">
                         <ItensCount onCountChange={ handleCountChange }></ItensCount>
-                            <Button title={`Incluir - R$ ${item.price}`}></Button>
+                            <Button 
+                                title={`Incluir - R$ ${item.price}`} 
+                                onClick={() => handleAddToCart(item)}></Button>
                     </div>
                 </div>
                 </div>

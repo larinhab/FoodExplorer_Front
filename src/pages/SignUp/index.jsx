@@ -45,7 +45,7 @@ export function SignUp(){
           <div className='SignInForm'>
           <Form className='form'>
 
-            <label for='name'><FiUser size='2rem'/> Nome
+            <label htmlFor='name'><FiUser size='2rem'/> Nome
             </label>
             <input 
               name='name'
@@ -55,7 +55,7 @@ export function SignUp(){
           </Form>
 
           <Form>
-            <label for='email'><MdOutlineEmail size='2rem'/> E-mail</label>
+            <label htmlFor='email'><MdOutlineEmail size='2rem'/> E-mail</label>
             <input 
               name='email'
               placeholder='Exemplo: exemplo@exemplo.com.br' 
@@ -64,7 +64,7 @@ export function SignUp(){
           </Form>
            
           <Form>
-            <label for='password'> <RiLockPasswordLine size='2rem'/>Senha </label>
+            <label htmlFor='password'> <RiLockPasswordLine size='2rem'/>Senha </label>
             <input 
               placeholder='No mínimo 6 caracteres' 
               type='password'  

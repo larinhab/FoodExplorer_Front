@@ -3,20 +3,22 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 100%;
     height: 100dvh;
+
     margin: auto;
-     
+    
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    gap: 400px;
+
 `
 export const Section = styled.div`
     width: 800px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     text-align: center;
 
-    margin-right: 30rem; 
-    
     padding: 6rem;
     border-radius: 1rem;
 

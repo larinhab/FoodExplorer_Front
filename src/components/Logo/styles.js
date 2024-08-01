@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-        width: 100%;
+        //width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -16,6 +16,7 @@ export const Container = styled.div`
             line-height: normal;
             
             margin-left: 1rem;
+            cursor: pointer;
         }
          
         .logo-img {  
@@ -23,11 +24,10 @@ export const Container = styled.div`
             height: 30px;
             margin: 0;
         }
-        
 
-        cursor: pointer;
         > p {
-        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+            color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+            
     }
 `
 

@@ -22,6 +22,7 @@ export function SignIn(){
 
   return (
     <Container>
+      
       <LogoFoodExplorer></LogoFoodExplorer>
 
       <Section>
@@ -29,7 +30,7 @@ export function SignIn(){
           <div className='SignInForm'>
 
           <Form>
-            <label for='email'><MdOutlineEmail size='2rem'/> E-mail</label>
+            <label htmlFor='email'><MdOutlineEmail size='2rem'/> E-mail</label>
             <input 
               name='email'
               placeholder='Exemplo: exemplo@exemplo.com.br' 
@@ -38,7 +39,7 @@ export function SignIn(){
           </Form>
            
           <Form>
-            <label for='password'> <RiLockPasswordLine size='2rem'/>Senha </label>
+            <label htmlFor='password'> <RiLockPasswordLine size='2rem'/>Senha </label>
             <input 
               placeholder='No mínimo 6 caracteres' 
               type='password'  
@@ -51,6 +52,7 @@ export function SignIn(){
         <Link to="/register">Crie uma conta</Link>
         
         </Section>
+        
     </Container>
   )
 }

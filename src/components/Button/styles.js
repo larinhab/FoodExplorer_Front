@@ -16,11 +16,13 @@ export const Container = styled.button`
     
     font-family: Poppins;
     font-size: 14px;
+    text-align: center;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-    &:disabled {
-        opacity: 0.5;
-        transition: 1s;
+    &:disabled, :hover {
+        filter: brightness(9);
+        opacity: 0.6;
+        transition: 3s;
     }
 
     svg {

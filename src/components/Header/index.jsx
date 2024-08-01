@@ -3,16 +3,25 @@ import { LogoFoodExplorer } from '../Logo/index'
 import { Button } from '../Button'
 import { Input } from '../Input'
 
-import { FaCartPlus } from "react-icons/fa6";
+import { BsCartPlusFill } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
 import { RxExit } from "react-icons/rx";
-import { LuPlus } from "react-icons/lu";
 
 import { useAuth } from '../../hooks/auth';
+import { useNavigate } from 'react-router-dom';
 
 export function Header({children}){
   const { signOut } = useAuth()
+  const navigate = useNavigate()
+
+  const handleCart = () => { 
+    navigate(`/cart`)
+  }
+
+  const handleProfile = () => {
+    navigate(`/profile`)
+  }
 
   return (
     <Container>
@@ -26,10 +35,10 @@ export function Header({children}){
         <Button title="Novo prato" icon={ <LuPlus /> }> </Button>
       } 
       */}
-      <Button title="Pedidos" icon={ FaCartPlus }> </Button>
+      <Button title="Pedidos" icon={ BsCartPlusFill } onClick={ handleCart }> </Button>
 
     <div className='icons'>
-        <FaUserEdit size={32} onClick={""}/> 
+        <FaUserEdit size={32} onClick={ handleProfile }/> 
         <RxExit size={32} onClick={ signOut }/>
     </div>
 </Container>
