@@ -39,8 +39,8 @@ export function Details() {
         setCountValue(newValue);
       }, [])
 
-      const handleEditPlate = () => {
-        navigate(`/editplate`)
+      const handleEditPlate = (id) => {
+        navigate(`/editplate/${id}`)
       }
 
     return(

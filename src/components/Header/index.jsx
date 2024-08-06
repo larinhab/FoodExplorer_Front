@@ -39,7 +39,7 @@ export function Header({children}){
 
       { user && user.role === 'admin' ? (
           <Button title="Novo prato" 
-                  size={32} 
+                  size={28} 
                   icon={ LuPlus } 
                   onClick={ handleNewPlate }> 
           </Button>

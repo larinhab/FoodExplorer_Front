@@ -5,7 +5,7 @@ export const Container = styled.textarea`
     height: 170px;
 
     border-radius: 8px;
-    background: var(--Dark-Dark-800, #0D161B);
+    background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_900};
 
     color: ${({ theme }) => theme.COLORS.WHITE};
 
@@ -14,9 +14,9 @@ export const Container = styled.textarea`
 
     font-family: 'Roboto';
 
-    margin-bottom: 8px;
-    border-radius: 10px;
-    padding: 14px;
+    margin-bottom: 2rem;
+    border-radius: 0.8rem;
+    padding: 1rem;
 
     &::placeholder {
         color: ${({ theme }) => theme.COLORS.GRAY_300};

@@ -1,4 +1,5 @@
-import { Container } from './style'
+import { Container, Form, Label, Select, ImageLabel } from './style'
+import { useEffect, useState } from "react";
 
 import { Input } from '../../components/Input'
 import { Header } from '../../components/Header'
@@ -10,59 +11,107 @@ import { ButtonBack } from '../../components/ButtonBack'
 import { IoCloudUploadOutline } from "react-icons/io5";
 
 export function NewPlate(){
+    const [name, setName] = useState("");
+    const [category, setCategory] = useState("");
+    const [value, setValue] = useState("");
+    const [description, setDescription] = useState("");
+    const [image, setImage] = useState(null);
+    const [isDisable, setIsDisable] = useState(true);
+
+    const [ingredients, setIngredients] = useState([]);
+    const [newIngredient, setNewIngredient] = useState("");
     return(
         <Container>
             <Header/>
             <ButtonBack/>
             
             <main>
-            <form>
-
             <h1>Adicionar prato</h1>   
-
+            
+            <Form>
             <div className="new-plate-container">
+                <div className="first-container">
+                    <div>
+                        <p>Imagem do prato</p>
+                        <ImageLabel htmlFor='image'> 
+                        <IoCloudUploadOutline size={32}/>
+                        <span>Selecione a imagem
+                        <input 
+                            type="file"
+                            title="plate_img"
+                            id='input-file'
+                            onChange={(e) => setImage}/>
+                         </span>
+                        </ImageLabel>
+                    </div>
 
-                <Input 
-                    type="file"
-                    title="plate_img"
-                    placeholder="Selecione uma imagem"
-                    icon={ IoCloudUploadOutline }
-                    />
 
+                <div>
+                <Label htmlFor='name'>
+                <p>Nome</p>
                 <Input 
                     type="text" 
                     title="plate_title"
-                    placeholder="Título"
-                    onChange={(e) => setTitle(e.target.value)} />
+                    placeholder="Ex.: Salada Ceasar"
+                    onChange={(e) => setName(e.target.value)} />
+                </Label>
+                </div>
+                
+                <div>
+                <Label htmlFor='category'>
+                <p>Categoria</p>
+                <Select
+                    type="select" 
+                    title="plate_category"
+                    onChange={(e) => setCategory(e.target.value)}>
+                    <option value="Refeição">Refeição</option>
+                    <option value="Sobremesa">Sobremesa</option>
+                    <option value="Bebidas">Bebida</option>
+                </Select>
+                </Label>
+                    </div>
+                </div>
 
+                <div className="second-container">
+                <div>
+
+                <Label htmlFor='ingredients'>
+                <p>Ingredientes</p>
                 <Input 
                     type="text" 
                     title="plate_tags"
                     placeholder="Tags"
-                    onChange={(e) => setTitle(e.target.value)} />
+                    onChange={(e) => setIngredients(e.target.value)} />
+                </Label>
+                </div>
 
-                <Input 
-                    type="radio" 
-                    title="plate_category"
-                    placeholder="Categoria"
-                    onChange={(e) => setTitle(e.target.value)} />
-
+                <div>
+                <Label htmlFor='price'>
+                <p>Preço</p>
                 <Input
                     type="number" 
                     title="plate_price" 
-                    placeholder="R$ 00,00"/>
+                    placeholder="R$ 00,00"
+                    onChange={(e) => setValue(e.target.value)}/>
+                </Label>
+                </div>
+                </div>
 
+                <Label htmlFor='description'>
+                <p>Descrição</p>
                 <TextArea 
                     title="plate_description"
                     placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
                     onChange={(e) => setDescription(e.target.value)}>
                 </TextArea>
+                </Label>
                 
-                <Button title="Excluir Prato"></Button>
-                <Button title="Salvar alterações"></Button>
+                <div className="last-container">
+                    <Button title="Salvar alterações"></Button>
+                </div>
             
                 </div>
-                </form>
+                </Form>
                 </main>
             <Footer/>
         </Container>

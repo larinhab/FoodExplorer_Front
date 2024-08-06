@@ -12,6 +12,7 @@ export default {
       LIGHT_BLUE_100: "#82F3FF",
       LIGHT_BLUE: "#065E7C",
       TOMATO: "#750310",
+      T_LIGHT: "#AB4D55",
       
       WHITE: "#F4EDE8",
       

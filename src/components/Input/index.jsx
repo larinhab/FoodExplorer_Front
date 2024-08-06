@@ -1,6 +1,6 @@
 import { Container } from "./styles";
 
-export function Input({ placeholder, icon: Icon, onChange, value, ...rest }) {
+export function Input({children, placeholder, icon: Icon, onChange, value, ...rest }) {
 
   return (
     <Container>

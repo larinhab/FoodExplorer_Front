@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-       
-        
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -29,8 +27,12 @@ export const Container = styled.div`
 
         > p {
             color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
-            
-    }
+        }
+
+        p:hover{
+            color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+            transition: 1s;
+        }
 `
 
 export const Section = styled.div`
@@ -38,5 +40,4 @@ export const Section = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: row;
-
 `

@@ -26,6 +26,11 @@ export const Container = styled.header`
         gap: 2rem;
     }
 
+    .icons svg:hover{
+        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+        transition: 1s;
+    }
+
     button{
         width: 30%;
         font-size: 14px;

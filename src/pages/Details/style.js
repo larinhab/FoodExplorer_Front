@@ -54,7 +54,7 @@ export const Container = styled.div`
         align-items: center;
         justify-content: center;
         gap: 2rem;
-        width: 50%;
+        width: 60%;
     }
 
 `

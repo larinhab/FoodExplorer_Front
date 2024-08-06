@@ -13,7 +13,6 @@ export const Container = styled.div`
         margin: 2rem 0;
         color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_300};
     }
-    
 
     swiper-slide{
         display: flex;
@@ -29,7 +28,6 @@ export const Container = styled.div`
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        
         padding: 2rem;
         
         width: 500px;
@@ -59,6 +57,11 @@ export const Container = styled.div`
             cursor: pointer;
         }
 
+        svg:hover{
+        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+        transition: 1s;
+    }
+
         .plate-name {
             display: flex;
             align-items: center;
@@ -67,21 +70,22 @@ export const Container = styled.div`
             font-size: 24px;
             font-weight: 700;
         }   
+
         .plate-price {
             font-family: Roboto;
             font-size: 32px;
             color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
             margin-top: 4rem;
         }
+
         .plate-description{
+            padding: 1rem;
             font-family: Roboto;
             font-size: 14px;
             font-weight: 400;
-            overflow: auto;
             text-align: center;
+            overflow: hidden;
         }
-
-
     }
 
     .add-cart{

@@ -6,8 +6,10 @@ export const Container = styled.div`
         height: 100vh;
         background: ${({ theme }) => theme.COLORS.DARK_BLUE_200};
 
-
-
+        footer{
+            position: fixed;
+            bottom: 0;
+        }
 `
 
 export const Form = styled.form`

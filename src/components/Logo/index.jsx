@@ -11,7 +11,7 @@ export function LogoFoodExplorer(){
       const { user } = useAuth()
       
       function handleBack(){
-        navigate(-1)
+        navigate('/')
       }
       
   return (

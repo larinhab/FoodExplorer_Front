@@ -1,7 +1,7 @@
 import { LogoFoodExplorer } from "../Logo"
 import { Container } from "./styles"
 
-export const Footer = () => {
+export const Footer = (...rest) => {
     const actualYear = new Date()
 
   return (

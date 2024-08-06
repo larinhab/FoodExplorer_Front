@@ -39,8 +39,8 @@ export function Card() {
         navigate(`plates/${id}`)
     }
 
-    const handleEditPlate = () => {
-        navigate(`/editplate`)
+    const handleEditPlate = (id) => {
+        navigate(`/editplate/${id}`)
       }
 
 
@@ -59,7 +59,11 @@ export function Card() {
 
                     <div className="plate-info">
                         {user && user.role === 'admin' ? (
-                                <LuClipboardEdit size={32} style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer'}}></LuClipboardEdit>
+                                <LuClipboardEdit size={32} 
+                                                onClick={handleEditPlate}
+                                                style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer'}}>
+                                                
+                                                </LuClipboardEdit>
                             ) : (
                                 <LuHeart size={32} style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer' }}/>
                             )}
@@ -76,7 +80,7 @@ export function Card() {
 
                     <div className="add-cart">
                         {user && user.role === 'admin' ? (
-                                <Button title="Deletar" onClick={ handleEditPlate }></Button>
+                                <Button title="Excluir" onClick={ handleEditPlate }></Button>
                             ) : (
                                 <>
                                 <ItensCount onCountChange={ handleCountChange }></ItensCount>
