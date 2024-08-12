@@ -8,6 +8,7 @@ export default {
       DARK_BLUE_700: "#001119",
       DARK_BLUE_600: "#00111A",
       DARK_BLUE_900: "#0D1D25",
+      DARK_1000: "#192227",
 
       LIGHT_BLUE_100: "#82F3FF",
       LIGHT_BLUE: "#065E7C",
