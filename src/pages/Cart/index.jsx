@@ -4,6 +4,7 @@ import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Button } from '../../components/Button/index.jsx';
 import { ButtonBack } from '../../components/ButtonBack/index.jsx'
+import { TextArea } from '../../components/TextArea/index.jsx';
 
 import { BsCartXFill } from "react-icons/bs";
 import { BsFillCartCheckFill } from "react-icons/bs";
@@ -76,8 +77,15 @@ export function Cart() {
                     ))}
                 </ul>
             )}
-            {cartItems.length > 0 && (
+            {
+            cartItems.length > 0 && (
+
                 <div className='cart-closing'>
+                    <div>
+                        <p>Observação:</p>
+                        <TextArea placeholder="Ex.: Sem cebola na minha salada :)"></TextArea>
+                    </div>
+                    <div className='cart-buttons'>
                     <p>Total: {totalFormatted} </p>
                         <Button title='Pagamento' 
                                 icon={ BsFillCartCheckFill }
@@ -86,6 +94,7 @@ export function Cart() {
                                 icon={ BsCartXFill } 
                                 onClick={ clearCart }></Button>
                 </div>
+                    </div>
             )}
                 </div>
             </main>

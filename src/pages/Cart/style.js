@@ -62,10 +62,6 @@ export const Container = styled.div`
     }
 
     .cart-closing{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
         gap: 5rem;
         margin: 4rem 20rem;
         padding: 2rem;
@@ -75,5 +71,24 @@ export const Container = styled.div`
         p {
             margin-right: 12rem;
         }
+
+        >div:nth-child(1){
+            padding: 0 8rem;
+            p{
+                margin: 1rem 0;
+            }
+        }
+    }
+
+    .cart-buttons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 5rem;
+        margin: 4rem 20rem;
+        padding: 2rem;
+
+        font-size: 2rem;
     }
 `
