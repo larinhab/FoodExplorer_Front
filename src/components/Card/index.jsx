@@ -18,11 +18,13 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useAuth } from '../../hooks/auth'
 import { USER_ROLE } from '../../utilis/roles.js'
 import { useCart } from "../../context/CartContext";
+import { api } from "../../services/api.js";
 
 register();
 
 export function Card() {
-    const [countValue, setCountValue] = useState(1);
+    const [ countValue, setCountValue ] = useState(1);
+    const [ favorites, setFavorites ] = useState([])
     const { user } = useAuth()
     const { addToCart } = useCart()
     const navigate = useNavigate()
@@ -43,6 +45,20 @@ export function Card() {
         navigate(`/editplate/${id}`)
       }
 
+    const handleFavoritesToggle = async (plate_id) => {
+        console.log('plate_id:', plate_id);
+        try{
+            if(favorites.includes(plate_id)){
+                await api.post('/favorites', { plate_id })
+                setFavorites(favorites.filter(id => id !== plate_id))
+            }else{
+                await api.post('/favorites', {plate_id})
+                setFavorites([...favorites, plate_id])
+            }
+        }catch(error){
+            console.error("Erro ao adicionar/remover dos favoritos", error)
+        }
+    }
 
     const renderSwiper = (items) => (
         <swiper-container
@@ -60,12 +76,15 @@ export function Card() {
                     <div className="plate-info">
                         {user && user.role === 'admin' ? (
                                 <LuClipboardEdit size={32} 
-                                                onClick={handleEditPlate}
+                                                onClick={handleEditPlate(item.id)}
                                                 style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer'}}>
                                                 
                                                 </LuClipboardEdit>
                             ) : (
-                                <LuHeart size={32} style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer' }}/>
+                                <LuHeart size={32} 
+                                         style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer', 
+                                                  fill: favorites.includes(item.id) ? 'blue' : ''}}
+                                         onClick={() => handleFavoritesToggle(item.id)}/>
                             )}
                         <img
                             src={item.image}
@@ -94,6 +113,19 @@ export function Card() {
         ))}
     </swiper-container>
     )
+
+    useEffect(() => {
+        async function fetchFavorites(){
+            try{
+                const response = await api.get('/favorites')
+                setFavorites(response.data.map(fav => fav.plate_id))
+            }catch(error){
+                console.error("Erro ao buscar favoritos", error)
+            }
+        }
+        fetchFavorites()
+    }, [])
+
     return (
         <Container> 
             <h2>Refeições</h2>
