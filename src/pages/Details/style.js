@@ -5,32 +5,37 @@ export const Container = styled.div`
     width: 100%;
     margin: 0 auto;
 
+    footer{
+        position: fixed;
+        bottom: 0;
+    }
  
     .plate-container {
         display: flex;
         justify-items: center;
         align-items: center;
+        width: 80%;
         
-        margin: 16px 20%;
+        margin: 100px 20%;
         padding: 4rem;
         gap: 3rem;
     }
 
         .plate-info{
+            width: 800px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: start;
 
             gap: 3rem;
-            
-            width: 600px;
+
             margin-left: 4rem;
         }
 
         .plate-image {
-            width: 380px;
-            height: 380px;
+            width: 480px;
+            height: 480px;
         }
     
         .plate-name {        
@@ -56,5 +61,15 @@ export const Container = styled.div`
         gap: 2rem;
         width: 60%;
     }
+`
 
+export const TagsContainer = styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        margin: 1rem 0;
+        padding-bottom: 3rem;
 `

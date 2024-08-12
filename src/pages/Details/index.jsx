@@ -1,4 +1,4 @@
-import { Container } from './style.js'
+import { Container, TagsContainer } from './style.js'
 
 import { useParams } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { useCart } from "../../context/CartContext";
 
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
+import { Tags } from '../../components/Tags/index.jsx'
 import { Button } from '../../components/Button/index.jsx';
 import { ButtonBack } from '../../components/ButtonBack/index.jsx'
 import { ItensCount } from '../../components/ItensCount/index.jsx';
@@ -58,6 +59,15 @@ export function Details() {
                     <div className="plate-info">
                         <h1 className="plate-name">{item.name}</h1>
                         <p className="plate-description">{item.description}</p>
+
+                    <TagsContainer>
+                        <Tags title={'alface'}></Tags>
+                        <Tags title={'cebola'}></Tags>
+                        <Tags title={'pão naan'}></Tags>
+                        <Tags title={'pepino'}></Tags>
+                        <Tags title={'rabanete'}></Tags>
+                    </TagsContainer>
+                    
 
                     <div className="add-cart">
                         {user && user.role === 'admin' ? (
