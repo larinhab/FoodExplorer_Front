@@ -7,16 +7,19 @@ import theme from './styles/theme'
 import  GlobalStyles from './styles/global.js'
 
 import './index.css'
-import { AuthProvider } from './hooks/auth.jsx'
 import { Routes } from './routes'
 
+import { AuthProvider } from './hooks/auth.jsx'
 import { CartProvider } from './context/CartContext.jsx'
+import { FavoritesProvider } from './context/FavoritesContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
         
+        <FavoritesProvider>
+
         <CartProvider>
 
         <AuthProvider>
@@ -24,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </AuthProvider>
 
         </CartProvider>
+        </FavoritesProvider>
         
     </ThemeProvider>
   </React.StrictMode>,

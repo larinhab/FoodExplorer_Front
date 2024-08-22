@@ -4,6 +4,11 @@ export const Container = styled.div`
     height: 100dvh;
     width: 100%;
    
+    footer{
+        position: fixed;
+        bottom: 0;
+    }
+    
     main{
         display: flex;
         align-items: center;

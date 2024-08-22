@@ -8,12 +8,18 @@ import { IoIosSearch } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
 import { LuPlus } from "react-icons/lu";
 import { RxExit } from "react-icons/rx";
+import { LuHeart } from "react-icons/lu";
 
+import { api } from '../../services/api.js';
+import { useEffect, useState } from 'react';
+import { useNavigate} from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useFavorites } from '../../context/FavoritesContext.jsx'
+
 import { USER_ROLE } from '../../utilis/roles.js'
 
-export function Header({children}){
+export function Header({ children }){
+  const { favorites } = useFavorites()
   const { signOut, user } = useAuth()
   const navigate = useNavigate()
 
@@ -27,6 +33,10 @@ export function Header({children}){
 
   const handleNewPlate = () => {
     navigate(`/newplate`)
+  }
+
+  const handleFavoritesPage = () => {
+    navigate(`/favorites`)
   }
 
   return (
@@ -53,6 +63,10 @@ export function Header({children}){
 
     <div className='icons'>
         <FaUserEdit size={32} onClick={ handleProfile }/> 
+        { favorites.length > 0 && (
+          <LuHeart size={32} 
+                  onClick={ handleFavoritesPage } />
+        )}
         <RxExit size={32} onClick={ signOut }/>
     </div>
 </Container>

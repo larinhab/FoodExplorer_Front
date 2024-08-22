@@ -1,8 +1,16 @@
 import { Container } from "./styles";
 import { Button } from '../Button'
 import { ItensCount } from '../ItensCount'
-import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { useAuth } from '../../hooks/auth'
+import { useCart } from "../../context/CartContext";
+import { useFavorites } from '../../context/FavoritesContext.jsx'
+
+import { api } from "../../services/api.js";
+import { USER_ROLE } from '../../utilis/roles.js'
 
 import { data } from "../../utilis/data";
 
@@ -15,27 +23,22 @@ import { LuHeart } from "react-icons/lu";
 import { LuClipboardEdit } from "react-icons/lu";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-import { useAuth } from '../../hooks/auth'
-import { USER_ROLE } from '../../utilis/roles.js'
-import { useCart } from "../../context/CartContext";
-import { api } from "../../services/api.js";
-
 register();
 
-export function Card() {
-    const [ countValue, setCountValue ] = useState(1);
-    const [ favorites, setFavorites ] = useState([])
-    const { user } = useAuth()
+export function Card({plate_id, item}) {
+    const { favorites, addFavorite, removeFavorite, } = useFavorites()
+    const [countValue, setCountValue] = useState(1);
     const { addToCart } = useCart()
+    const { user } = useAuth()
     const navigate = useNavigate()
 
-      const handleCountChange = (newValue) => {
-          setCountValue(newValue);
-      }
+    const handleCountChange = (newValue) => {
+        setCountValue(newValue);
+    }
 
-      const handleAddToCart = useCallback((item) => {
-        addToCart({ ...item, quantity: countValue || 1 }); 
-      }, [])
+    const handleAddToCart = useCallback((item) => {
+        addToCart({ ...item, quantity: countValue || 1 });
+    }, [])
 
     const handleDetails = (id) => {
         navigate(`plates/${id}`)
@@ -43,99 +46,72 @@ export function Card() {
 
     const handleEditPlate = (id) => {
         navigate(`/editplate/${id}`)
-      }
+    }
 
-    const handleFavoritesToggle = async (plate_id) => {
-        console.log('plate_id:', plate_id);
-        try{
-            if(favorites.includes(plate_id)){
-                await api.post('/favorites', { plate_id })
-                setFavorites(favorites.filter(id => id !== plate_id))
-            }else{
-                await api.post('/favorites', {plate_id})
-                setFavorites([...favorites, plate_id])
-            }
-        }catch(error){
-            console.error("Erro ao adicionar/remover dos favoritos", error)
+    async function handleDeletePlate(){
+        const confirm = window.confirm("Deseja realmente excluir esse prato?")
+
+        if(confirm){
+            await api.delete(`plates/${id}`)
+            navigate(-1)
         }
     }
 
-    const renderSwiper = (items) => (
-        <swiper-container
-        slides-per-view="3"
-        css-mode="true"
-        space-between='32'
-        loop='true'
-        pagination={{ clickable: true }}
-        navigation='true'
-    >
-        {items.map((item) =>(
-            <swiper-slide key={item.id}>
-                <div className="plate">
-
-                    <div className="plate-info">
-                        {user && user.role === 'admin' ? (
-                                <LuClipboardEdit size={32} 
-                                                onClick={handleEditPlate(item.id)}
-                                                style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer'}}>
-                                                
-                                                </LuClipboardEdit>
-                            ) : (
-                                <LuHeart size={32} 
-                                         style={{ position: 'absolute', top: '40', right: '70', cursor: 'pointer', 
-                                                  fill: favorites.includes(item.id) ? 'blue' : ''}}
-                                         onClick={() => handleFavoritesToggle(item.id)}/>
-                            )}
-                        <img
-                            src={item.image}
-                            alt={`Imagem do ${item.category}`}
-                            onClick={() => handleDetails(item.id) }
-                        />
-                        <p className="plate-name">{item.name}  <MdKeyboardArrowRight size={18} /></p>
-                        <p className="plate-description">{item.description}</p>
-                        <p className="plate-price">R$ {item.price}</p>
-                    </div>
-                
-
-                    <div className="add-cart">
-                        {user && user.role === 'admin' ? (
-                                <Button title="Excluir" onClick={ handleEditPlate }></Button>
-                            ) : (
-                                <>
-                                <ItensCount onCountChange={ handleCountChange }></ItensCount>
-                                <Button title="Incluir" onClick={() => handleAddToCart(item)}></Button>
-                            </>
-                            )}
-                    </div>
-                    </div>
-                
-            </swiper-slide>
-        ))}
-    </swiper-container>
-    )
-
-    useEffect(() => {
-        async function fetchFavorites(){
-            try{
-                const response = await api.get('/favorites')
-                setFavorites(response.data.map(fav => fav.plate_id))
-            }catch(error){
-                console.error("Erro ao buscar favoritos", error)
-            }
+    const handleFavoritesToggle = (plate_id) => {
+        console.log("handleFavoritesToggle foi chamada com plate_id:", plate_id);
+        
+        const favorite = favorites.find(fav => fav.plate_id === plate_id);
+        if (favorite) {
+            console.log("Removendo favorito com id:", favorite.id)
+            removeFavorite(favorite.id);
+        } else {
+            console.log("Adicionando favorito com plate_id:", plate_id);
+            addFavorite(plate_id);
         }
-        fetchFavorites()
-    }, [])
+    }
 
     return (
-        <Container> 
-            <h2>Refeições</h2>
-            {renderSwiper(data.refeicao)}
+        <Container>
+            <div className="plate">
+                <div className="plate-info">
+                    {user && user.role === 'admin' ? (
+                        <LuClipboardEdit size={32}
+                            onClick={() => handleEditPlate(item.id)}
+                            style={{ position: 'absolute', top: '15', right: '25', cursor: 'pointer' }}>
 
-            <h2>Bebidas</h2>
-            {renderSwiper(data.bebidas)}
+                        </LuClipboardEdit>
+                    ) : (
+                        <LuHeart size={32}
+                            style={{
+                                position: 'absolute', top: '15', right: '25', cursor: 'pointer',
+                                fill: favorites.some(fav => fav.plate_id === item.id) ? '#82F3FF' : '',
+                                color: favorites.some(fav => fav.plate_id === item.id) ? '#82F3FF' : ''
+                            }}
+                            onClick={() => handleFavoritesToggle(item.id)} />
+                    )}
+                    <img
+                        src={item.image}
+                        alt={`Imagem do ${item.category}`}
+                        onClick={() => handleDetails(item.id)}
+                    />
+                    <p className="plate-name">{item.name}<MdKeyboardArrowRight size={32} /></p>
+                    <p className="plate-description">{item.description}</p>
+                    <p className="plate-price">R$ {item.price}</p>
+                </div>
 
-            <h2>Sobremesas</h2>
-            {renderSwiper(data.sobremesas)}
-        </Container>    
+
+                <div className="add-cart">
+                    {user && user.role === 'admin' ? (
+                        <Button title="Excluir" onClick={handleDeletePlate}></Button>
+                    ) : (
+                        <>
+                            <ItensCount onCountChange={handleCountChange}></ItensCount>
+                            <Button title="Incluir" onClick={() => handleAddToCart(item)}></Button>
+                        </>
+                    )}
+                </div>
+            </div>
+
+        </Container>
     )
 }

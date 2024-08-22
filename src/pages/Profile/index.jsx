@@ -10,17 +10,21 @@ import { FiUser, FiMail, FiLock } from 'react-icons/fi'
 import { FaUserEdit } from "react-icons/fa";
 
 import { useState } from "react"
+import { api } from '../../services/api.js';
 import { useAuth } from '../../hooks/auth.jsx';
+import { useNavigate } from "react-router-dom";
 
 export function Profile(){
-    const { user, uptadeProfile } = useAuth() 
+    const { user, signOut, updateProfile  } = useAuth() 
     const [ name, setName ] = useState(user.name) 
     const [ email, setEmail ] = useState(user.email)
     const [ passowordOld, setPasswordOld ] = useState()
     const [ passwordNew, setPasswordNew ] = useState()
 
-    async function handleUptade(){
-        const uptadeUser = { 
+    const navigate = useNavigate();
+
+    async function handleUpdate(){
+        const updateUser = { 
             name, 
             email,
             password: passwordNew,
@@ -29,13 +33,31 @@ export function Profile(){
 
         if(!passowordOld && !passwordNew){
             alert("Você precisa alterar sua senha para salvar!")
+            return
         }
 
-        const userUpdated = Object.assign( user, uptadeUser)
+        try {
+            await updateProfile({ user: updateUser })
+            alert("Senha atualizada com sucesso")
+            navigate("/")
+        } catch (error) {
+            console.error("Erro ao atualizar senha", error)
+        }
+        
+    }
 
-        await uptadeProfile({ user: uptadeUser })
-            
-        navigate("/")
+    async function handleDeleteUser(id){
+        const confirm = window.confirm("Deseja realmente excluir sua conta? :(")
+
+        if(confirm){
+            try{
+                await api.delete(`users/${id}`)
+                signOut()
+                navigate("/register")
+            }catch(error){
+                console.error("Erro ao excluir conta", error)
+            }
+        }
     }
 
     return(
@@ -56,7 +78,8 @@ export function Profile(){
                 type="text"
                 icon={FiUser}
                 value={name}
-                onChange= {e => setName(e.target.value)}>
+                onChange= {e => setName(e.target.value)}
+                autoComplete="name">
                 </Input>
 
                 <Input
@@ -64,24 +87,33 @@ export function Profile(){
                 type="text"
                 icon={FiMail}
                 value={email}
-                onChange= {e => setEmail(e.target.value)}>
+                onChange= {e => setEmail(e.target.value)}
+                autoComplete="email"
+                required>
                 </Input>
 
                 <Input
                 placeholder="Senha Atual"
                 type="password"
                 icon={FiLock}
-                onChange= {e => setPasswordOld(e.target.value)}>
+                onChange= {e => setPasswordOld(e.target.value)}
+                autoComplete="current-password"
+                required>
                 </Input>
 
                 <Input
                 placeholder="Nova senha"
                 type="password"
                 icon={FiLock}
-                onChange= {e => setPasswordNew(e.target.value)}>
+                onChange= {e => setPasswordNew(e.target.value)}
+                autoComplete="new-password"
+                required>
                 </Input>
 
-                <Button title="Salvar" onClick={ handleUptade }></Button>
+                <div className="btn-container">
+                    <Button title="Salvar" onClick={ handleUpdate }></Button>
+                    <Button title="Excluir conta" onClick={ () => handleDeleteUser(user.id) }></Button>
+                </div>
             </Form>
 
             <Footer/>

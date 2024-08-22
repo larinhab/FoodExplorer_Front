@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
         width: 100%;
-        height: 100vh;
+        height: 100dvh;
         background: ${({ theme }) => theme.COLORS.DARK_BLUE_200};
 
         footer{
@@ -45,5 +45,12 @@ export const Form = styled.form`
     input:active{
         border-radius: 2px;
         outline: 1px solid white;
+    }
+
+    .btn-container{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 3rem;
     }
 `

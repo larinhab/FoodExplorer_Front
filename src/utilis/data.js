@@ -39,7 +39,7 @@ export const data = {
             name: 'Spaguetti Gambé', 
             image: spaguetti_gambe , 
             price: '59,90', 
-            description: 'Massa fresca deliciosa com camarões e molho pesto. ' ,
+            description: 'Massa caseira fresca deliciosa com camarões e molho pesto. ' ,
             tags: "arroz, camarão, cebola, limão, parmesão, tomate, vinho branco",
         },
         {

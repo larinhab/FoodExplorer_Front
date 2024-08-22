@@ -4,6 +4,37 @@ export const Container = styled.div`
     height: 100dvh;
     width: 100%;
     margin: auto;
+
+    .card-container{
+        margin: auto 23rem;
+    }
+
+    h1{
+        font-size: 32px;
+        font-family: Poppins;
+        font-weight: 500;
+        margin-bottom: 2rem;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_300};
+    }
+
+    swiper-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+        margin-bottom: 12.5rem;
+    }
+
+    swiper-slide{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_200};
+    }
 `
 
 export const HomeImage = styled.div`
@@ -16,7 +47,7 @@ export const HomeImage = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 10% auto;
+    margin: 8% auto 4% auto;
 
     > .banner-container {
         display: flex;
@@ -30,7 +61,7 @@ export const HomeImage = styled.div`
         margin-bottom: 14rem;
     }
     }
-         h2 {
+        h2 {
         font-family: Poppins;
         font-size: 40px;
         font-weight: 500;

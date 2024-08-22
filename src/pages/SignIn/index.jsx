@@ -35,7 +35,9 @@ export function SignIn(){
               name='email'
               placeholder='Exemplo: exemplo@exemplo.com.br' 
               type='text'
-              onChange={e => setEmail(e.target.value)}/>
+              onChange={e => setEmail(e.target.value)}
+              autoComplete="email"
+              required/>
           </Form>
            
           <Form>
@@ -43,7 +45,9 @@ export function SignIn(){
             <input 
               placeholder='No mínimo 6 caracteres' 
               type='password'  
-              onChange={e => setPassword(e.target.value)}/>
+              onChange={e => setPassword(e.target.value)}
+              autoComplete="password"
+              required/>
           </Form>
         </div>
 

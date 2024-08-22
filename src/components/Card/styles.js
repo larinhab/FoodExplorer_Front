@@ -1,38 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    min-height: 100dvh;
-    margin: 100px 200px;
-    padding: 0 10rem;
-
-    > h2 {
-        font-size: 32px;
-        font-family: Poppins;
-        font-weight: 500;
-        
-        margin: 2rem 0;
-        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_300};
-    }
-
-    swiper-slide{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_200};
-
-    }
+    width: 100%;
 
     .plate {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding: 2rem;
-        
-        width: 500px;
-        height: 600px;
-
+        padding: 1rem;
     }
 
     .plate-info{
@@ -42,17 +18,15 @@ export const Container = styled.div`
         flex-direction: column;
 
         width: 100%;
-        
-        gap: 1rem;
-        margin: 1em;
-        padding: 2rem;
+    
+        padding: 1rem;
 
         img {
             width: 176px;
             height: 176px;
             object-fit: cover;
             border-radius: 100%;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
                     
             cursor: pointer;
         }
@@ -63,8 +37,13 @@ export const Container = styled.div`
     }
 
         .plate-name {
+            width: 110%;
+            
             display: flex;
+            flex-direction: row;
             align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
             
             font-family: Poppins;
             font-size: 24px;
@@ -73,18 +52,18 @@ export const Container = styled.div`
 
         .plate-price {
             font-family: Roboto;
-            font-size: 32px;
+            font-size: 36px;
             color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
-            margin-top: 4rem;
+            margin: 4rem auto;
         }
 
         .plate-description{
-            padding: 1rem;
+            align-items: center;
+            justify-content: center;
             font-family: Roboto;
             font-size: 14px;
             font-weight: 400;
             text-align: center;
-            overflow: hidden;
         }
     }
 
@@ -94,6 +73,5 @@ export const Container = styled.div`
         justify-content: center;
         
         gap: 2rem;
-        margin-bottom: 2rem;
     }
 `

@@ -51,7 +51,9 @@ export function SignUp(){
               name='name'
               placeholder='Exemplo: Maria da Silva' 
               type='text'  
-              onChange={e => setName(e.target.value)}/>
+              onChange={e => setName(e.target.value)}
+              autoComplete="name"
+              required/>
           </Form>
 
           <Form>
@@ -60,7 +62,9 @@ export function SignUp(){
               name='email'
               placeholder='Exemplo: exemplo@exemplo.com.br' 
               type='text'
-              onChange={e => setEmail(e.target.value)}/>
+              onChange={e => setEmail(e.target.value)}
+              autoComplete="email"
+              required/>
           </Form>
            
           <Form>
@@ -68,7 +72,9 @@ export function SignUp(){
             <input 
               placeholder='No mínimo 6 caracteres' 
               type='password'  
-              onChange={e => setPassword(e.target.value)}/>
+              onChange={e => setPassword(e.target.value)}
+              autoComplete="password"
+              required/>
           </Form>
         </div>
 

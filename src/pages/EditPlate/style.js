@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
         height: 100dvh;
-        margin: 0 auto;
+        margin: 0 auto 200px auto;
 
         footer{
             position: fixed;

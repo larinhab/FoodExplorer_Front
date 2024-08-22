@@ -1,5 +1,5 @@
+import React, { createContext, useState, useContext, useEffect } from 'react'
 import { api } from '../services/api'
-import { createContext, useContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext({})
 
@@ -26,11 +26,27 @@ function AuthProvider({ children }){
         }
     }
 
-    function signOut({}){
+    function signOut(){
         localStorage.removeItem("@foodexplorer:token")
         localStorage.removeItem("@foodexplorer:user")
 
         setData({})
+    }
+
+    async function updateProfile({ user }){
+        try {
+            const response = await api.put(`/users/${id}`, user)
+            const updatedUser = response.data
+
+            localStorage.setItem("@foodexplorer:user", JSON.stringify((updatedUser)))
+            setData({ user, token: data.token})
+
+            return("Usuário atualizado com sucesso!")
+            
+        } catch (error) {
+            console.log("Não foi possivel atualizar o usuário.", error)
+        }
+        
     }
 
 
@@ -52,6 +68,7 @@ function AuthProvider({ children }){
         <AuthContext.Provider value={{ 
             signIn, 
             signOut, 
+            updateProfile,
             user: data.user 
             }}>
             

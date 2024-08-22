@@ -12,7 +12,6 @@ export function ButtonBack() {
 
     return (
         <Container 
-        to="/"
         onClick={ handleBack }>
             <MdKeyboardArrowLeft/>
             <p>voltar</p>
