@@ -1,45 +1,45 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: ${({ theme, $isNew }) =>
-    $isNew ? "transparent" : theme.COLORS.LIGHT_700};
+  background-color:  ${({ theme }) => theme.COLORS.DARK_BLUE_300};
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  border: none;
 
-  border: ${({ $isNew }) => ($isNew ? `1px dashed gray` : "none")};
-
+  width: 100%;
+  height: 3rem;
+  margin: 2rem;
+  border-radius: 0.8rem;
+  
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  border-radius: 8px;
-  padding: 0 1rem;
+  justify-content: space-between;
+  align-items: center;  
+  text-align: center;
+
+  svg {
+    font-size: 32px;
+    margin: 1rem;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    filter: contrast(0);
+  }
 
   button {
     background: none;
     border: none;
     display: flex;
-
-    path {
-      color: ${({ theme }) => theme.COLORS.CAKE_200};
-    }
   }
 
   > input {
-    width: 13rem;
-    display: flex;
-    align-items: center;
-    text-transform: capitalize;
+    width: 100%;
     height: 3rem;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    
+    color: ${({ theme }) => theme.COLORS.WHITE};
     background: transparent;
     border: none;
-    font-size: 1.4rem;
-    margin-left: -1rem;
-    padding: 1rem;
-  }
 
-  > div {
-    display: flex;
-    align-items: center;
-    text-transform: capitalize;
-    height: 3rem;
-    font-size: 1.4rem;
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.GRAY_200};
+    }
   }
 `;

@@ -11,7 +11,11 @@ export function IngredientTag({ $isNew, value, onClick, ...rest }) {
         <div>{value}</div>
       )}
       <button onClick={onClick} type="button">
-        {$isNew ? <FiPlus /> : <IoMdClose />}
+        {
+          $isNew 
+          ? <FiPlus/>  
+          : <IoMdClose/>
+          }
       </button>
     </Container>
   );

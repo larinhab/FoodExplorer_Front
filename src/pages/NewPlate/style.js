@@ -28,7 +28,7 @@ export const Container = styled.div`
 export const Form = styled.form`
         width: 100%;
         margin: 0 auto;
-
+        
         .new-plate-container{
             width: 100%;
             margin: 2rem 0;
@@ -49,11 +49,26 @@ export const Form = styled.form`
 
         .second-container{
             div:nth-child(1){
-                width: 250%;
+                width: 150%;
             }
 
-            div:nth-child(2){
+            .plate-tags{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                height: 4.8rem;
+                border-radius: 0.8rem;
+                background-color:  ${({ theme }) => theme.COLORS.DARK_BLUE_900};
+                
+            }
+
+            .price{
                 width: 100%;
+                input {
+                    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+                }
             }
         }
 
@@ -80,6 +95,9 @@ export const Form = styled.form`
 
             div:nth-child(2){
                 width: 100%;
+                input {
+                    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+                }
             }
 
             div:nth-child(3){
