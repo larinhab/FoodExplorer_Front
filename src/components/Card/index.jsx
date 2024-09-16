@@ -10,14 +10,10 @@ import { useCart } from "../../context/CartContext";
 import { useFavorites } from '../../context/FavoritesContext.jsx'
 
 import { api } from "../../services/api.js";
-import { USER_ROLE } from '../../utilis/roles.js'
-
-import { data } from "../../utilis/data";
 
 import 'swiper/css'
 import 'swiper/css/bundle'
 import { register } from 'swiper/element/bundle';
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import { LuHeart } from "react-icons/lu";
 import { LuClipboardEdit } from "react-icons/lu";
@@ -49,11 +45,16 @@ export function Card({plate_id, item}) {
     }
 
     async function handleDeletePlate(){
-        const confirm = window.confirm("Deseja realmente excluir esse prato?")
-
-        if(confirm){
-            await api.delete(`plates/${id}`)
-            navigate(-1)
+        const confirm = window.confirm("Deseja realmente remover o prato?")
+        if(confirm) {
+            try{
+                await api.delete(`/plates/${id}`)
+                alert("Prato deletado com sucesso", 200)
+                navigate(-1)
+            }catch(error){
+                console.error("Erro ao deletar prato:", error)
+                alert("Erro ao deletar prato.")
+            }
         }
     }
 
@@ -102,10 +103,10 @@ export function Card({plate_id, item}) {
 
                 <div className="add-cart">
                     {user && user.role === 'admin' ? (
-                        <Button title="Excluir" onClick={handleDeletePlate}></Button>
+                        <Button title="Excluir" onClick={ handleDeletePlate }></Button>
                     ) : (
                         <>
-                            <ItensCount onCountChange={handleCountChange}></ItensCount>
+                            <ItensCount onCountChange={ handleCountChange }></ItensCount>
                             <Button title="Incluir" onClick={() => handleAddToCart(item)}></Button>
                         </>
                     )}

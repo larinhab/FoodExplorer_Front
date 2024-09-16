@@ -25,44 +25,6 @@ export function NewPlate(){
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
 
-
-    async function handleCreatePlate(){
-        const valueToPrice = Number(price.replace(",", "."));
-        if(!name){
-            return alert("Você deixou o nome vazio!")
-        }
-
-        if(!description){
-            return alert("Você deixou a descrição do prato vazia!")
-        }
-
-        if(!price && price >= 0 ){
-            return alert("Você deve definir um preço")
-        }
-
-        if(!ingredients){
-            return alert("Você deixou um campo de marcador vazio!")
-        }
-
-        if(newIngredient){
-            return alert("Você deixou um campo de marcador vazio!")
-        }
-
-        if (ingredients.length <= 0) {
-            return alert("Adicione pelo menos um ingrediente");
-          }
-    
-        await api.post("/plates", {
-            name,
-            category,
-            price,
-            description,
-        }),
-
-        alert("Prato criado com sucesso", 200)
-        navigate(-1)
-    }
-
     function handleAddPlateTags(){
         setIngredients(prevState => [...prevState, newIngredient])
         setNewIngredient("")
@@ -77,9 +39,57 @@ export function NewPlate(){
         setImage(file);
     }
 
-    const handleCategory = (category) => {
-        setCategory(category);
-    };
+    async function handleCreatePlate(){
+        const valueToPrice = Number(price.replace(",", "."));
+        if(!name){
+            return alert("Você deixou o nome vazio!")
+        }
+
+        if(!description){
+            return alert("Você deixou a descrição do prato vazia!")
+        }
+
+        if(!price || valueToPrice <= 0 ){
+            return alert("Você deve definir um preço!")
+        }
+
+        if(!ingredients){
+            return alert("Você deixou um campo de marcador vazio!")
+        }
+
+        if(newIngredient){
+            return alert("Você deixou um campo de marcador vazio!")
+        }
+
+        if (ingredients.length <= 0) {
+            return alert("Adicione pelo menos um ingrediente!");
+        }
+        
+        if(!image){
+            return alert("Selecione uma imagem para o prato!")
+        }
+
+        const formData = new FormData();
+            formData.append('name', name)
+            formData.append('category', category)
+            formData.append('price', valueToPrice)
+            formData.append('description', description)
+            formData.append('image', image)
+            formData.append('ingredients', ingredients.join(','));
+    
+        try{
+            await api.post("/plates", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            alert("Prato criado com sucesso", 200)
+            navigate(-1)
+        }catch(error){
+            alert("Erro ao criar prato.");
+            console.error(error);
+        }
+    }
 
     return(
         <Container>
@@ -126,7 +136,7 @@ export function NewPlate(){
                     title="plate_category"
                     onChange={(e) => setCategory(e.target.value)}
                     value={ category }>
-                    <option value="" disable={ isDisable }>Selecione uma categoria</option>
+                    <option value="" disabled={ isDisable }>Selecione uma categoria</option>
                     <option value="Refeição">Refeição</option>
                     <option value="Sobremesa">Sobremesa</option>
                     <option value="Bebidas">Bebida</option>

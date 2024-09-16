@@ -37,7 +37,6 @@ export function FavoritesProvider({ children }) {
         const fetchFavorites = async () => {
             try {
                 const response = await api.get('/favorites')
-                console.log(data)
                 setFavorites(response.data)
             } catch (error) {
                 console.error("Erro ao buscar favoritos", error)

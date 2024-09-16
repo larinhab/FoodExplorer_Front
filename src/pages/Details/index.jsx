@@ -44,6 +44,19 @@ export function Details() {
         navigate(`/editplate/${id}`)
       }
 
+      async function handleDeletePlate(){
+        const confirm = window.confirm("Deseja realmente remover o prato?")
+        if(confirm) {
+            try{
+                await api.delete(`/plates/${id}`)
+                alert("Prato deletado com sucesso", 200)
+                navigate(-1)
+            }catch(error){
+                console.error("Erro ao deletar prato:", error)
+                alert("Erro ao deletar prato.")
+            }
+        }
+    }
     return(
         <Container>
             <Header/>
@@ -72,7 +85,7 @@ export function Details() {
                     <div className="add-cart">
                         {user && user.role === 'admin' ? (
                                 <>
-                                    <Button title="Excluir" onClick={ ''/**handleDeletePlate**/ }></Button>
+                                    <Button title="Excluir" onClick={ handleDeletePlate}></Button>
                                     <Button title="Editar prato" onClick={ handleEditPlate }></Button>
                                 </>
                             ) : (

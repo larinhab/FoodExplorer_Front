@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
         height: 100dvh;
-        margin: 0 auto 200px auto;
+        margin: 0 auto;
 
         footer{
             position: fixed;
@@ -28,8 +28,8 @@ export const Container = styled.div`
 export const Form = styled.form`
         width: 100%;
         margin: 0 auto;
-
-        .new-plate-container{
+        
+        .edit-plate-container{
             width: 100%;
             margin: 2rem 0;
             padding: 2rem 0;
@@ -49,11 +49,26 @@ export const Form = styled.form`
 
         .second-container{
             div:nth-child(1){
-                width: 250%;
+                width: 150%;
             }
 
-            div:nth-child(2){
+            .plate-tags{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                height: 4.8rem;
+                border-radius: 0.8rem;
+                background-color:  ${({ theme }) => theme.COLORS.DARK_BLUE_900};
+                
+            }
+
+            .price{
                 width: 100%;
+                input {
+                    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+                }
             }
         }
 
@@ -74,33 +89,38 @@ export const Form = styled.form`
             div:first-child{
                 width: 60%; 
                 input[type='file']{
-                    display: none;
+                    display: flex;
+                    opacity: 0;
+                    position: absolute;
+                    top: 335px;
+                    cursor: pointer;
                 }
             }
 
             div:nth-child(2){
                 width: 100%;
+                input {
+                    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+                }
             }
 
             div:nth-child(3){
                 width: 80%;
             }
             
-        }
-
+        }   
         .last-container{
-            gap: 2rem;
-            margin-left: 60%;
-        }
+                gap: 2rem;
+                margin-left: 60%;
 
-        .last-container
-        button:first-child{
-            background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_900};
-        }
-        button:first-child:hover{
-            opacity: 0.5;
-            transition: 1s;
-        }
+                button:first-child{
+                    background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_900};
+                    }
+                button:first-child:hover{
+                    opacity: 0.5;
+                    transition: 1s;
+                    }
+            }
 `
 
 export const Label = styled.label`
@@ -145,3 +165,6 @@ export const ImageLabel = styled.label`
         border-radius: 0.8rem;
         padding: .75rem 2rem;
 `
+
+
+

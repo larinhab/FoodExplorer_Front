@@ -1,19 +1,35 @@
 import { Container, HomeImage } from './style'
+import { useState, useEffect } from "react";
 import homeFrame from '../../assets/outras/homeFrame.png'
 
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Card } from '../../components/Card'
 
-import { data } from "../../utilis/data";
+import { api } from '../../services/api';
+import { data } from '../../utilis/data';
 
 export function Home(){
+  const [ plates, setPlates ] = useState([])
+
   const categories = [
     { title: "Refeições", items: data.refeicao },
     { title: "Bebidas", items: data.bebidas },
     { title: "Sobremesas", items: data.sobremesas }
     ];
 
+
+  useEffect(()=> {
+    async function fetchPlates() {
+        try {
+          const response = await api.get("/plates")
+          setPlates(response.data)
+        } catch (error) {
+          console.error("Erro ao buscar pratos:", error)
+        }
+    }
+    fetchPlates()
+  }, [])
 
   return (
     <Container>

@@ -74,7 +74,7 @@ export const Form = styled.form`
 
         .first-container{
             width: 100%;
-            
+            z-index: 1;
             p{
                 margin: 1rem 0;
             }
@@ -89,7 +89,11 @@ export const Form = styled.form`
             div:first-child{
                 width: 60%; 
                 input[type='file']{
-                    display: none;
+                    display: flex;
+                    opacity: 0;
+                    position: absolute;
+                    top: 335px;
+                    cursor: pointer;
                 }
             }
 
@@ -152,4 +156,5 @@ export const ImageLabel = styled.label`
         height: 4.8rem;
         border-radius: 0.8rem;
         padding: .75rem 2rem;
+        cursor: pointer;
 `
