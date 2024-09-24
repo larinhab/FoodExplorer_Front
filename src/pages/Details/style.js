@@ -9,12 +9,12 @@ export const Container = styled.div`
         position: fixed;
         bottom: 0;
     }
- 
+
+
     .plate-container {
         display: flex;
         justify-items: center;
         align-items: center;
-        width: 80%;
         
         margin: 100px 20%;
         padding: 4rem;

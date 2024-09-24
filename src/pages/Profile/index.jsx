@@ -12,14 +12,15 @@ import { FaUserEdit } from "react-icons/fa";
 import { useState } from "react"
 import { api } from '../../services/api.js';
 import { useAuth } from '../../hooks/auth.jsx';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function Profile(){
     const { user, signOut, updateProfile  } = useAuth() 
     const [ name, setName ] = useState(user.name) 
     const [ email, setEmail ] = useState(user.email)
-    const [ passowordOld, setPasswordOld ] = useState()
+    const [ passwordOld, setPasswordOld ] = useState()
     const [ passwordNew, setPasswordNew ] = useState()
+    const { id } = useParams()
 
     const navigate = useNavigate();
 
@@ -28,17 +29,18 @@ export function Profile(){
             name, 
             email,
             password: passwordNew,
-            old_password: passowordOld
+            old_password: passwordOld
         }
 
-        if(!passowordOld && !passwordNew){
+        if(!passwordOld && !passwordNew){
             alert("Você precisa alterar sua senha para salvar!")
             return
         }
 
         try {
             await updateProfile({ user: updateUser })
-            alert("Senha atualizada com sucesso")
+            alert("Senha atualizada com sucesso, por favor faça login novamente!")
+            signOut()
             navigate("/")
         } catch (error) {
             console.error("Erro ao atualizar senha", error)
@@ -51,7 +53,7 @@ export function Profile(){
 
         if(confirm){
             try{
-                await api.delete(`users/${id}`)
+                await api.delete(`/users/${id}`)
                 signOut()
                 navigate("/register")
             }catch(error){

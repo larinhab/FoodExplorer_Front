@@ -36,7 +36,7 @@ export function EditPlate(){
                 setCategory(plate.category)
                 setPrice(plate.price)
                 setDescription(plate.description)
-                setIngredients(plate.ingredients.split(','))
+                setIngredients(plate.ingredients)
                 setImage(plate.image)
             }catch(error){
                 console.error("Erro ao buscar prato:", error)
@@ -117,7 +117,7 @@ export function EditPlate(){
                 formData.append('ingredients', ingredients.join(','));
         
             try{
-                await api.patch(`/plates/{id}`, formData, {
+                await api.patch(`/plates/${id}`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -162,7 +162,7 @@ export function EditPlate(){
                 <Input 
                     type="text" 
                     title="plate_name"
-                    placeholder="Ex.: Salada Ceasar"
+                    placeholder= { name }
                     onChange={(e) => setName(e.target.value)} />
                 </Label>
                 </div>
@@ -191,12 +191,12 @@ export function EditPlate(){
                 
             <div className="plate-tags">
                 {ingredients &&
-                    ingredients.map((ingredients, index) => (
+                    ingredients.map((ingredient, index) => (
                     <IngredientTag
-                        key={String(index)}
-                        value={ ingredients }
-                        onClick={() => handleRemovePlateTag( ingredients )}>
-                </IngredientTag>
+                        key={(index)}
+                        value={ ingredient.name }
+                        onClick={() => handleRemovePlateTag( ingredient )}>
+                    </IngredientTag>
                 ))
             }
 
@@ -229,7 +229,7 @@ export function EditPlate(){
                 <p>Descrição</p>
                 <TextArea 
                     title="plate_description"
-                    placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                    placeholder={ description }
                     onChange={(e) => setDescription(e.target.value)}>
                 </TextArea>
                 </Label>

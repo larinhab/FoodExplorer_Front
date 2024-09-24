@@ -57,7 +57,7 @@ export const Form = styled.form`
                 flex-direction: row;
                 align-items: center;
                 justify-content: center;
-                gap: 2rem;
+                gap: 1rem;
                 height: 4.8rem;
                 border-radius: 0.8rem;
                 background-color:  ${({ theme }) => theme.COLORS.DARK_BLUE_900};

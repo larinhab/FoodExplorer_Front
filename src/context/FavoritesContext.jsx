@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import { api } from '../services/api'
-import { data } from '../utilis/data'
 
 const FavoritesContext = createContext()
 
@@ -21,11 +20,7 @@ export function FavoritesProvider({ children }) {
 
     const removeFavorite = async (id) => {
         try {
-            console.log("Tentando remover favorito com ID:", id);
-
             await api.delete(`/favorites/${id}`)
-
-            console.log("Remoção bem-sucedida");
             
             setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== id))
         } catch (error) {

@@ -12,6 +12,7 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 
 import { useCart } from '../../context/CartContext.jsx';
+import { api } from '../../services/api.js';
 
 export function Cart() {
     const { cartItems, removeFromCart, clearCart } = useCart()
@@ -25,6 +26,11 @@ export function Cart() {
     }, 0)
 
     const totalFormatted = total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+
+    const formatPrice = (price) => {
+        const number = parseFloat(price)
+        return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
+    }
 
     const handlePayment = () => {
         navigate(`/payment`)
@@ -52,7 +58,9 @@ export function Cart() {
                                         <tbody>
                                             <tr>
                                             <td>
-                                                <img className='cart-image' src={item.image} alt={`Imagem do ${item.name}`}/>
+                                                <img className='cart-image' 
+                                                     src={`${api.defaults.baseURL}/files/${item.image}`} 
+                                                     alt={`Imagem do ${item.name}`}/>
                                             </td>
                                             <td>
                                                {item.name}
@@ -63,7 +71,7 @@ export function Cart() {
                                             </td>
 
                                             <td>
-                                               R${item.price}
+                                               {formatPrice(item.price)}
                                             </td>
                                             <td>
                                                 <Button title='Remover' onClick={() => removeFromCart(item.id)}></Button>

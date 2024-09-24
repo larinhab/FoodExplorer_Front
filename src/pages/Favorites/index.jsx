@@ -3,18 +3,21 @@ import { Container } from './style'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Button } from '../../components/Button'
-import { ButtonBack } from '../../components/ButtonBack/index.jsx';
+import { ButtonBack } from '../../components/ButtonBack/index.jsx'
 
-import { data } from "../../utilis/data";
-import { api } from '../../services/api.js';
+import { api } from '../../services/api.js'
 
-import { useAuth } from '../../hooks/auth';
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/CartContext"
 import { useFavorites } from '../../context/FavoritesContext.jsx'
 
 export function Favorites(){
     const { favorites, removeFavorite, } = useFavorites()
     const { addToCart } = useCart()
+
+    const formatPrice = (price) => {
+        const number = parseFloat(price)
+        return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
+    }
     
     return (
     <Container>
@@ -37,22 +40,22 @@ export function Favorites(){
                                         <tbody>
                                             <tr>
                                             <td>
-                                                <img className='fav-image' src={`${api.defaults.baseURL}/images/${fav.image}`} alt={`Imagem do ${fav.name}`}/>
+                                                <img className='fav-image' 
+                                                     src={`${api.defaults.baseURL}/files/${fav.image}`} 
+                                                     alt={`Imagem do ${fav.name}`}/>
                                             </td>
+                                            
                                             <td>
                                                {fav.name}
                                             </td>
-
                                             <td>
-                                               {fav.quantity}
-                                            </td>
-
-                                            <td>
-                                               R${fav.price}
+                                               {formatPrice(fav.price)}
                                             </td>
                                             <td>
-                                                <Button title='Remover dos favoritos' onClick={() => removeFavorite(fav.id)}></Button>
-                                                <Button title='Comprar novamente' onClick={() => addToCart }></Button>
+                                                <Button title='Comprar novamente' className="btn" onClick={() => addToCart(fav) }></Button>
+                                            </td>
+                                            <td>
+                                                <Button title='Remover dos favoritos' className="btn" onClick={() => removeFavorite(fav.id)}></Button>
                                             </td>
                                             </tr>
                                         </tbody>

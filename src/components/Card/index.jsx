@@ -1,43 +1,53 @@
-import { Container } from "./styles";
+import { Container } from "./styles"
 import { Button } from '../Button'
 import { ItensCount } from '../ItensCount'
 
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
 import { useAuth } from '../../hooks/auth'
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/CartContext"
 import { useFavorites } from '../../context/FavoritesContext.jsx'
 
-import { api } from "../../services/api.js";
+import { api } from "../../services/api.js"
 
 import 'swiper/css'
 import 'swiper/css/bundle'
-import { register } from 'swiper/element/bundle';
+import { register } from 'swiper/element/bundle'
 
-import { LuHeart } from "react-icons/lu";
-import { LuClipboardEdit } from "react-icons/lu";
-import { MdKeyboardArrowRight } from "react-icons/md";
+import { LuHeart } from "react-icons/lu"
+import { LuClipboardEdit } from "react-icons/lu"
+import { MdKeyboardArrowRight } from "react-icons/md"
 
 register();
 
-export function Card({plate_id, item}) {
+export function Card({ plate }) {
     const { favorites, addFavorite, removeFavorite, } = useFavorites()
     const [countValue, setCountValue] = useState(1);
     const { addToCart } = useCart()
     const { user } = useAuth()
+    const { id } = useParams()
     const navigate = useNavigate()
+
+    const formatPrice = (price) => {
+        const number = parseFloat(price)
+        return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
+    }
 
     const handleCountChange = (newValue) => {
         setCountValue(newValue);
     }
 
-    const handleAddToCart = useCallback((item) => {
-        addToCart({ ...item, quantity: countValue || 1 });
-    }, [])
+    const handleAddToCart = useCallback(() => {
+        if(plate) {
+         addToCart({ ...plate, quantity: countValue })
+         } 
+
+         return("Prato adicionado ao carrinho!")
+       }, [plate, countValue, addToCart])
 
     const handleDetails = (id) => {
-        navigate(`plates/${id}`)
+        navigate(`/plates/${id}`)
     }
 
     const handleEditPlate = (id) => {
@@ -59,14 +69,10 @@ export function Card({plate_id, item}) {
     }
 
     const handleFavoritesToggle = (plate_id) => {
-        console.log("handleFavoritesToggle foi chamada com plate_id:", plate_id);
-        
         const favorite = favorites.find(fav => fav.plate_id === plate_id);
         if (favorite) {
-            console.log("Removendo favorito com id:", favorite.id)
             removeFavorite(favorite.id);
         } else {
-            console.log("Adicionando favorito com plate_id:", plate_id);
             addFavorite(plate_id);
         }
     }
@@ -77,7 +83,7 @@ export function Card({plate_id, item}) {
                 <div className="plate-info">
                     {user && user.role === 'admin' ? (
                         <LuClipboardEdit size={32}
-                            onClick={() => handleEditPlate(item.id)}
+                            onClick={() => handleEditPlate(plate.id)}
                             style={{ position: 'absolute', top: '15', right: '25', cursor: 'pointer' }}>
 
                         </LuClipboardEdit>
@@ -85,19 +91,19 @@ export function Card({plate_id, item}) {
                         <LuHeart size={32}
                             style={{
                                 position: 'absolute', top: '15', right: '25', cursor: 'pointer',
-                                fill: favorites.some(fav => fav.plate_id === item.id) ? '#82F3FF' : '',
-                                color: favorites.some(fav => fav.plate_id === item.id) ? '#82F3FF' : ''
+                                fill: favorites.some(fav => fav.plate_id === plate.id) ? '#82F3FF' : '',
+                                color: favorites.some(fav => fav.plate_id === plate.id) ? '#82F3FF' : ''
                             }}
-                            onClick={() => handleFavoritesToggle(item.id)} />
+                            onClick={() => handleFavoritesToggle(plate.id)} />
                     )}
                     <img
-                        src={item.image}
-                        alt={`Imagem do ${item.category}`}
-                        onClick={() => handleDetails(item.id)}
+                        src={`${api.defaults.baseURL}/files/${plate.image}`} 
+                        alt={`Imagem do ${plate.name}`}
+                        onClick={() => handleDetails(plate.id)}
                     />
-                    <p className="plate-name">{item.name}<MdKeyboardArrowRight size={32} /></p>
-                    <p className="plate-description">{item.description}</p>
-                    <p className="plate-price">R$ {item.price}</p>
+                    <p className="plate-name">{plate.name}<MdKeyboardArrowRight size={32} /></p>
+                    <p className="plate-description">{plate.description}</p>
+                    <p className="plate-price">{formatPrice(plate.price)}</p>
                 </div>
 
 
@@ -107,7 +113,7 @@ export function Card({plate_id, item}) {
                     ) : (
                         <>
                             <ItensCount onCountChange={ handleCountChange }></ItensCount>
-                            <Button title="Incluir" onClick={() => handleAddToCart(item)}></Button>
+                            <Button title="Incluir" onClick={() => handleAddToCart(plate)}></Button>
                         </>
                     )}
                 </div>

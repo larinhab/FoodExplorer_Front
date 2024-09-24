@@ -6,8 +6,8 @@ export const Container = styled.div`
   border: none;
 
   width: 100%;
+  margin: 0.2rem;
   height: 3rem;
-  margin: 2rem;
   border-radius: 0.8rem;
   
   display: flex;

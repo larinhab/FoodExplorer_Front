@@ -18,6 +18,14 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_300};
     }
 
+    .category{
+        margin: 2rem 25rem;
+
+        >h1{
+            margin: 4rem 5rem;
+        }
+    }   
+
     swiper-container{
         display: flex;
         justify-content: center;

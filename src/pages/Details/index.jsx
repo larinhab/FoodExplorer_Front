@@ -14,37 +14,32 @@ import { Button } from '../../components/Button/index.jsx';
 import { ButtonBack } from '../../components/ButtonBack/index.jsx'
 import { ItensCount } from '../../components/ItensCount/index.jsx';
 
-import { data } from "../../utilis/data";
-
+import { api } from '../../services/api.js';
 
 export function Details() {
-    const [countValue, setCountValue] = useState(1);
-    const navigate = useNavigate()
+    const [ countValue, setCountValue ] = useState(1);
+    const [ plate, setPlate ] = useState({})
     const { addToCart } = useCart()
     const { id } = useParams()
     const { user } = useAuth()
-
-    const item = Object.values(data)
-    .flat() 
-    .find((item) => item.id === parseInt(id));
-
-    if(!item) {
-        return <div>Prato não encontrado</div>
-    }
-
-    const handleAddToCart = useCallback((item) => {
-        addToCart({ ...item, quantity: countValue }); 
-      }, [])
-
+    const navigate = useNavigate()
+    
+    
+    const handleAddToCart = useCallback(() => {
+        if(plate) {
+            addToCart({ ...plate, quantity: countValue })
+        } 
+    }, [plate, countValue, addToCart])
+    
     const handleCountChange = useCallback((newValue) => {
         setCountValue(newValue);
-      }, [])
+    }, [])
 
-      const handleEditPlate = (id) => {
+    const handleEditPlate = useCallback(() => {
         navigate(`/editplate/${id}`)
-      }
-
-      async function handleDeletePlate(){
+    }, [navigate, id])
+    
+    async function handleDeletePlate(){
         const confirm = window.confirm("Deseja realmente remover o prato?")
         if(confirm) {
             try{
@@ -57,28 +52,46 @@ export function Details() {
             }
         }
     }
-    return(
-        <Container>
+    
+           if(!plate) {
+             return <div>Prato não encontrado</div>
+           }
+        
+        useEffect(() => {
+            console.log("useEffect executando")
+            async function searchPlate() {
+                try {
+                    const response = await api.get(`/plates/${id}`);
+                    console.log("data:", response.data);
+                    setPlate(response.data);
+                } catch (error) {
+                    console.error("Erro ao buscar prato.", error);
+                }
+            }
+            searchPlate();
+        }, []);
+        
+        return(
+            <Container>
             <Header/>
             <ButtonBack/>
 
             <main>
                 <div className="plate-container">
                     <img
-                        src={item.image}
-                        alt={`Imagem do ${item.name}`}
+                        src={`${api.defaults.baseURL}/files/${plate.image}`}
+                        alt={`Imagem do ${plate.name}`}
                         className="plate-image"
-                    />
+                        />
                     <div className="plate-info">
-                        <h1 className="plate-name">{item.name}</h1>
-                        <p className="plate-description">{item.description}</p>
+                        <h1 className="plate-name">{plate.name}</h1>
+                        <p className="plate-description">{plate.description}</p>
 
                     <TagsContainer>
-                        <Tags title={'alface'}></Tags>
-                        <Tags title={'cebola'}></Tags>
-                        <Tags title={'pão naan'}></Tags>
-                        <Tags title={'pepino'}></Tags>
-                        <Tags title={'rabanete'}></Tags>
+                            {plate.ingredients &&
+                                plate.ingredients.map((ingredient) => (
+                            <Tags key={String(ingredient.id)} title={ingredient.name} />
+                            ))}
                     </TagsContainer>
                     
 
@@ -91,7 +104,7 @@ export function Details() {
                             ) : (
                                 <>
                                     <ItensCount onCountChange={ handleCountChange }></ItensCount>
-                                    <Button title={`Incluir - R$ ${item.price}`} onClick={() => handleAddToCart(item)}></Button>
+                                    <Button title={`Incluir - R$ ${plate.price}`} onClick={() => handleAddToCart(plate)}></Button>
                                 </>
                     )}
                     </div>
