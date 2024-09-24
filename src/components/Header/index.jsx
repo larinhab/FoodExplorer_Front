@@ -1,10 +1,9 @@
-import { Input } from '../Input'
 import { Button } from '../Button'
 import { Container } from './styles'
 import { LogoFoodExplorer } from '../Logo/index'
+import { SearchInput } from '../SearchInput/index.jsx'
 
 import { BsCartPlusFill } from "react-icons/bs";
-import { IoIosSearch } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
 import { LuPlus } from "react-icons/lu";
 import { RxExit } from "react-icons/rx";
@@ -43,9 +42,7 @@ export function Header({ children }){
     <Container>
       <LogoFoodExplorer/>
       
-      <Input icon={ IoIosSearch }
-             placeholder="Busque por pratos ou ingredientes">
-      </Input>
+      <SearchInput/>
 
       { user && user.role === 'admin' ? (
           <Button title="Novo prato" 
