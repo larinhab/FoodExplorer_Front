@@ -80,7 +80,7 @@ export function SignUp(){
 
         <Button title="Criar conta" onClick={handleSignUp}></Button>
 
-         <Link to="/">Já tenho uma conta</Link> 
+         <Link to="/" className='link'>Já tenho uma conta</Link> 
           
         </Section>
     </Container>

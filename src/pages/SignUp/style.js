@@ -35,6 +35,11 @@ export const Section = styled.div`
         margin-top: 2rem;
         color: white;
     }
+
+    .link:hover{
+        color: ${({ theme }) => theme.COLORS.LIGHT_BLUE_100};
+        transition: 1s;
+    }
 `
 
 export const Form = styled.form`
@@ -72,4 +77,5 @@ export const Form = styled.form`
     >input:last-child{
         margin-bottom: 2rem;
     }
+
 `

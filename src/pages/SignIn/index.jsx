@@ -53,7 +53,7 @@ export function SignIn(){
 
         <Button title="Entrar" onClick={ handleSignIn }></Button>
 
-        <Link to="/register">Crie uma conta</Link>
+        <Link to="/register" className='link'>Crie uma conta</Link>
         
         </Section>
         

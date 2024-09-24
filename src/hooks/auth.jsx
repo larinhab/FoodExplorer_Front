@@ -35,11 +35,11 @@ function AuthProvider({ children }){
 
     async function updateProfile({ user }){
         try {
-            const response = await api.put(`/users/${id}`, user)
+            const response = await api.put(`/users/${user.id}`, user)
             const updatedUser = response.data
 
             localStorage.setItem("@foodexplorer:user", JSON.stringify((updatedUser)))
-            setData({ user, token: data.token})
+            setData({ user: updatedUser, token: data.token})
 
             return("Usuário atualizado com sucesso!")
             
@@ -69,7 +69,7 @@ function AuthProvider({ children }){
             signIn, 
             signOut, 
             updateProfile,
-            user: data.user 
+            user: data?.user 
             }}>
             
             {children}
