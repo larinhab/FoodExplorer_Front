@@ -57,7 +57,7 @@ export const HomeImage = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 8% auto 4% auto;
+    margin: 10% auto 4% auto;
 
     > .banner-container {
         display: flex;

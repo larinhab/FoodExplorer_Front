@@ -28,9 +28,8 @@ export const Container = styled.div`
     outline: none;
     border: none;
     text-align: start;
+
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
   }
 
-  &::placeholder {
-    color: ${({ theme }) => theme.COLORS.LIGHT_500};
-}
 `
