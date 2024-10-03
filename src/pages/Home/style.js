@@ -22,7 +22,7 @@ export const Container = styled.div`
         margin: 2rem 25rem;
 
         >h1{
-            margin: 4rem 5rem;
+            margin: 4rem 0rem;
         }
     }   
 
@@ -40,6 +40,8 @@ export const Container = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
+        overflow: hidden;
 
         background-color: ${({ theme }) => theme.COLORS.DARK_BLUE_200};
     }
