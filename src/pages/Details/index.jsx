@@ -24,7 +24,6 @@ export function Details() {
     const { user } = useAuth()
     const navigate = useNavigate()
     
-    
     const handleAddToCart = useCallback(() => {
         if(plate) {
             addToCart({ ...plate, quantity: countValue })
@@ -38,6 +37,12 @@ export function Details() {
     const handleEditPlate = useCallback(() => {
         navigate(`/editplate/${id}`)
     }, [navigate, id])
+
+    const formatPrice = (price) => {
+        const number = parseFloat(price)
+        return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
+    }
+
     
     async function handleDeletePlate(){
         const confirm = window.confirm("Deseja realmente remover o prato?")
@@ -104,7 +109,7 @@ export function Details() {
                             ) : (
                                 <>
                                     <ItensCount onCountChange={ handleCountChange }></ItensCount>
-                                    <Button title={`Incluir - R$ ${plate.price}`} onClick={() => handleAddToCart(plate)}></Button>
+                                    <Button title={`Incluir - ${formatPrice(plate.price)}`} onClick={() => handleAddToCart(plate)}></Button>
                                 </>
                     )}
                     </div>
