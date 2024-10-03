@@ -1,12 +1,15 @@
-import { Container, Section, Select, Label } from './style'
+import { Container, Section, Label } from './style'
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { useCart } from '../../context/CartContext.jsx'
 
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input/index.jsx'
 import { ButtonBack } from '../../components/ButtonBack/index.jsx'
+import { FormAddress } from '../../components/FormAddress/index.jsx'
 
 import qrCodePix from '../../assets/pay-info/qrcode-pix.png'
 
@@ -15,8 +18,6 @@ import { FaCopy, FaCheck } from "react-icons/fa";
 import { FaPix } from "react-icons/fa6";
 import { FaRegCreditCard } from "react-icons/fa6";  
 
-import { api } from '../../services/api.js'
-import { useCart } from '../../context/CartContext.jsx'
 
 export function Payment({plate}){
     const [ methodSelect, setMethodSelect ] = useState('pix')
@@ -71,97 +72,7 @@ export function Payment({plate}){
     
       <ButtonBack/>
       <main>
-        <form className='address'>
-          <h2>Dados da entrega</h2>
-          <div className='street'>
-            <Label title='Endereço'>Endereço
-              <Input type='text'
-                      placeholder='Ex.: Rua das Flores'/>
-            </Label>
-
-            <Label title='Número'>Número 
-              <Input type='number'
-              placeholder='Ex.:25'/>
-            </Label>
-          </div>
-
-          <div className="address-complement">
-              <Label title='Complemento'>Complemento
-                  <Input type='text'
-                  placeholder='Ex.: Bloco 1 /Apto 901'/>
-              </Label>
-
-              <Label title='Referência'>Referência
-                  <Input type='text'
-                  placeholder='Ex.: Em frente ao posto de gasolina'/>
-              </Label>
-                  
-          </div>
-
-          <div className="city-complement">
-              <Label title='Bairro'>Bairro
-                  <Input type='text'
-                  placeholder="Ex.: Centro"/>
-              </Label>
-
-              <Label title='Cidade'>Cidade
-                  <Input type='text'
-                  placeholder="Ex.: Porto Alegre"/>
-              </Label>
-          </div>
-
-          <div className="county-complement">
-              <Label title='Estado'>Estado
-              <Select
-                type="select"
-                title="Estado"
-                value={''}
-              >
-  <option value="" disabled={isDisable}>Selecione um estado</option>
-  <option value="AC">Acre</option>
-  <option value="AL">Alagoas</option>
-  <option value="AP">Amapá</option>
-  <option value="AM">Amazonas</option>
-  <option value="BA">Bahia</option>
-  <option value="CE">Ceará</option>
-  <option value="DF">Distrito Federal</option>
-  <option value="ES">Espírito Santo</option>
-  <option value="GO">Goiás</option>
-  <option value="MA">Maranhão</option>
-  <option value="MT">Mato Grosso</option>
-  <option value="MS">Mato Grosso do Sul</option>
-  <option value="MG">Minas Gerais</option>
-  <option value="PA">Pará</option>
-  <option value="PB">Paraíba</option>
-  <option value="PR">Paraná</option>
-  <option value="PE">Pernambuco</option>
-  <option value="PI">Piauí</option>
-  <option value="RJ">Rio de Janeiro</option>
-  <option value="RN">Rio Grande do Norte</option>
-  <option value="RS">Rio Grande do Sul</option>
-  <option value="RO">Rondônia</option>
-  <option value="RR">Roraima</option>
-  <option value="SC">Santa Catarina</option>
-  <option value="SP">São Paulo</option>
-  <option value="SE">Sergipe</option>
-  <option value="TO">Tocantins</option>
-              </Select>
-
-              </Label>
-
-              <Label title='País'>País
-                  <Input type='text'
-                  placeholder="Brasil"
-                  value='Brasil'
-                  readOnly
-                  />
-              </Label>
-          </div>
-                <Label className='saveAddress' title='Salvar Endereço'>Salvar como endereço principal
-                <input className='saveAddressInput' type='checkbox'/>
-              </Label>
-        </form>
-
+          <FormAddress/>
           <Section>
           <h2>Pagamento</h2>
           <div className='payment-method'>
@@ -177,11 +88,15 @@ export function Payment({plate}){
           
           {methodSelect === "pix" ? (
             <div className='qrCode'>
+              <Label className='totalPrice' 
+                     title="totalPrice">
+                Valor total:
+              <Input placeholder={totalFormatted} readOnly/>
+              </Label>
             <img
               src={qrCodePix}
               className='qrCodeImg'
             />
-
             <p ref={codeRef}>00020126330014BR.GOV.BCB.PIX0111851226370915204000053039865802BR5901N6001C62070503***6304BD4B</p>
             <Button title= {textCopied ? 'Código copiado'  : 'Copiar Código'}
                     icon={textCopied ? FaCheck : FaCopy  }
