@@ -55,9 +55,43 @@ export const Container = styled.div`
         width: 100%;
     }
 
-    .county-complement label:last-child{
-        width: 50%;
+    .county-complement label:last-child,
+    .county-complement input:last-child{
+        width: 70%;
+        cursor: not-allowed;
     }
+
+    .address-complement label:last-child,
+    .city-complement label:last-child{
+        width: 100%;
+    }
+    
+    .saveAddressInput{
+        width: 5px;
+        height: 5px;
+        appearance: none;
+        border-radius: 12px;
+        border: 1px solid #fff;
+        background: transparent;
+        cursor: pointer;
+        align-items: center;
+        margin-left: 4px;
+    }
+
+    .saveAddressInput:checked {
+        background-color:  ${({ theme }) => theme.COLORS.LIGHT_100};
+        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};;
+    }
+    
+    .saveAddress{
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        position: absolute;
+        bottom: 15px;
+    }
+    
 `
 
 export const Section = styled.div`
@@ -101,7 +135,33 @@ export const Section = styled.div`
     .cardFinalInfo label:last-child{
         width: 100%;
     }
+
+    .saveCardInput{
+        width: 5px;
+        height: 5px;
+        appearance: none;
+        border-radius: 12px;
+        border: 1px solid #fff;
+        background: transparent;
+        cursor: pointer;
+        align-items: center;
+        margin-left: 4px;
+    }
+
+    .saveCardInput:checked {
+        background-color:  ${({ theme }) => theme.COLORS.LIGHT_100};
+        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};;
+    }
     
+    .saveCard{
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        position: absolute;
+        bottom: 15px;
+    }
+
     .qrCode{
         display: flex;
         justify-content: center;
