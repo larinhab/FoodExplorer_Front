@@ -16,8 +16,10 @@ import { useAuth } from '../../hooks/auth';
 import { useFavorites } from '../../context/FavoritesContext.jsx'
 
 import { USER_ROLE } from '../../utilis/roles.js'
+import { useCart } from '../../context/CartContext.jsx';
 
 export function Header({ children }){
+  const { getTotalItems } = useCart()
   const { favorites } = useFavorites()
   const { signOut, user } = useAuth()
   const navigate = useNavigate()
@@ -51,9 +53,10 @@ export function Header({ children }){
                   onClick={ handleNewPlate }> 
           </Button>
         ) : (
-          <Button title="Pedidos" 
+          <Button title={`Pedidos (${getTotalItems()})`} 
                   icon={ BsCartPlusFill } 
-                  onClick={ handleCart }> 
+                  onClick={ handleCart }
+                  > 
           </Button>
         )
       }

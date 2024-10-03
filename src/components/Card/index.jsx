@@ -21,9 +21,9 @@ import { MdKeyboardArrowRight } from "react-icons/md"
 
 register();
 
-export function Card({ plate }) {
+export function Card({ plate, onCountChange }) {
     const { favorites, addFavorite, removeFavorite, } = useFavorites()
-    const [countValue, setCountValue] = useState(1);
+    const [ countValue, setCountValue ] = useState(1);
     const { addToCart } = useCart()
     const { user } = useAuth()
     const { id } = useParams()
@@ -35,7 +35,7 @@ export function Card({ plate }) {
     }
 
     const handleCountChange = (newValue) => {
-        setCountValue(newValue);
+        setCountValue(newValue)
     }
 
     const handleAddToCart = useCallback(() => {
@@ -43,7 +43,7 @@ export function Card({ plate }) {
          addToCart({ ...plate, quantity: countValue })
          } 
 
-         return("Prato adicionado ao carrinho!")
+         alert("Prato adicionado ao carrinho!")
        }, [plate, countValue, addToCart])
 
     const handleDetails = (id) => {

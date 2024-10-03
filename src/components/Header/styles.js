@@ -32,7 +32,7 @@ export const Container = styled.header`
     }
 
     button{
-        width: 30%;
+        width: 40%;
         font-size: 14px;
         font-weight: 500;
     }
