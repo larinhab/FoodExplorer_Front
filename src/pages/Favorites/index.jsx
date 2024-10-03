@@ -52,7 +52,7 @@ export function Favorites(){
                                                {formatPrice(fav.price)}
                                             </td>
                                             <td>
-                                                <Button title='Comprar novamente' className="btn" onClick={() => addToCart(fav) }></Button>
+                                                <Button title='Comprar novamente' className="btn" onClick={() => addToCart({...fav, quantity: +1}) }></Button>
                                             </td>
                                             <td>
                                                 <Button title='Remover dos favoritos' className="btn" onClick={() => removeFavorite(fav.id)}></Button>
