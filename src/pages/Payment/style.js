@@ -120,8 +120,9 @@ export const Section = styled.div`
     }
 
     .totalPrice{
-        width: 100px;
+        width: 80px;
         cursor: not-allowed;
+        margin: 2rem auto;
     } 
 
     .qrCodeImg{

@@ -21,12 +21,10 @@ import { FaRegCreditCard } from "react-icons/fa6";
 
 export function Payment({plate}){
     const [ methodSelect, setMethodSelect ] = useState('pix')
-    const [ isDisable, setIsDisable ] = useState(true);
     const [ cardName, setCardName ] = useState("")
     const [ cardNumber, setCardNumber ] = useState("");
     const [ cardValidate, setCardValidate ] = useState("");
     const [ cardCvv, setCardCvv ] = useState("");
-    const [ price, setPrice ] = useState("");
     const [ textCopied, setTextCopied ] = useState(false)
 
     const { cartItems } = useCart()
@@ -52,7 +50,6 @@ export function Payment({plate}){
         alert("Dados do cartão inválido.");
         return;
       }
-      redirectToPayment();
       setCardNumber("");
       setCardValidate("");
       setCvc("");
@@ -89,7 +86,7 @@ export function Payment({plate}){
           {methodSelect === "pix" ? (
             <div className='qrCode'>
               <Label className='totalPrice' 
-                     title="totalPrice">
+                     htmlFor="totalPrice">
                 Valor total:
               <Input placeholder={totalFormatted} readOnly/>
               </Label>
@@ -108,9 +105,9 @@ export function Payment({plate}){
 
           <form className='payment'>
           <div className='custumer-info'>
-          <Label title='cardName'>Nome do Titular
+          <Label htmlFor='cardName'>Nome do Titular
               <Input type="text" 
-                      title='Nome do Titular'
+                      htmlFor='Nome do Titular'
                       placeholder='Ex.: Joana Oliveira Santos' 
                       value={cardName}
                       onChange={(e) => setCardName(e.target.value)}
@@ -118,17 +115,17 @@ export function Payment({plate}){
             </Label>
           </div>
           <div className='cardInfoNumbers'>
-            <Label title='cardNumber'>Número do cartão
+            <Label htmlFor='cardNumber'>Número do cartão
               <Input type="number" 
-                     title='Número do Cartão' 
+                     htmlFor='Número do Cartão' 
                      placeholder='0000 0000 0000 0000'
                      value={cardNumber}
                      onChange={(e) => setCardNumber(e.target.value)}
               />
             </Label>
-            <Label title='cardValid'>Validade
+            <Label htmlFor='cardValid'>Validade
               <Input type="month" 
-                     title='Validade' 
+                     htmlFor='Validade' 
                      placeholder='__/_____'
                      value={cardValidate}
                      onChange={(e) => setCardValidate(e.target.value)}
@@ -136,9 +133,9 @@ export function Payment({plate}){
             </Label>
           </div>
           <div className='cardFinalInfo'>
-          <Label title="cardSecurityCode">CVV
+          <Label htmlFor="cardSecurityCode">CVV
               <Input type="number" 
-                     title='CVV' 
+                     htmlFor='CVV' 
                      placeholder='000'
                      maxLength="03"
                      value={cardCvv}
@@ -146,12 +143,12 @@ export function Payment({plate}){
               />
             </Label>
 
-          <Label title="totalPrice">
+          <Label htmlFor="totalPrice">
                 Valor total:
               <Input placeholder={totalFormatted} readOnly/>
           </Label>
           </div>
-              <Label className='saveCard' title='Salvar Cartão'>Salvar Cartão
+              <Label className='saveCard' htmlFor='Salvar Cartão'>Salvar Cartão
                 <input className='saveCardInput' 
                        type='checkbox'
                        onClick={handleCardPayment}/>

@@ -9,24 +9,24 @@ export function FormAddress() {
     <Form className='address'>
           <h2>Dados da entrega</h2>
           <div className='street'>
-            <Label title='Endereço'>Endereço
+            <Label htmlFor='Endereço'>Endereço
               <Input type='text'
                       placeholder='Ex.: Rua das Flores'/>
             </Label>
 
-            <Label title='Número'>Número 
+            <Label htmlFor='Número'>Número 
               <Input type='number'
               placeholder='Ex.:25'/>
             </Label>
           </div>
 
           <div className="address-complement">
-              <Label title='Complemento'>Complemento
+              <Label htmlFor='Complemento'>Complemento
                   <Input type='text'
                   placeholder='Ex.: Bloco 1 /Apto 901'/>
               </Label>
 
-              <Label title='Referência'>Referência
+              <Label htmlFor='Referência'>Referência
                   <Input type='text'
                   placeholder='Ex.: Em frente ao posto de gasolina'/>
               </Label>
@@ -34,19 +34,19 @@ export function FormAddress() {
           </div>
 
           <div className="city-complement">
-              <Label title='Bairro'>Bairro
+              <Label htmlFor='Bairro'>Bairro
                   <Input type='text'
                   placeholder="Ex.: Centro"/>
               </Label>
 
-              <Label title='Cidade'>Cidade
+              <Label htmlFor='Cidade'>Cidade
                   <Input type='text'
                   placeholder="Ex.: Porto Alegre"/>
               </Label>
           </div>
 
           <div className="county-complement">
-              <Label title='Estado'>Estado
+              <Label htmlFor='Estado'>Estado
               <Select
                 type="select"
                 title="Estado"
