@@ -92,7 +92,7 @@ export function Card({ plate, onCountChange }) {
                             style={{
                                 position: 'absolute', top: '15', right: '25', cursor: 'pointer',
                                 fill: favorites.some(fav => fav.plate_id === plate.id) ? '#82F3FF' : '',
-                                color: favorites.some(fav => fav.plate_id === plate.id) ? '#82F3FF' : ''
+                                color: favorites.some(fav => fav.plate_id === plate.id) ? '#82F3FF' : 'none'
                             }}
                             onClick={() => handleFavoritesToggle(plate.id)} />
                     )}
