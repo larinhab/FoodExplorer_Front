@@ -28,21 +28,22 @@ export function FavoritesProvider({ children }) {
         }
     }
 
-   useEffect(() => {
-        const fetchFavorites = async () => {
-            try {
-                const response = await api.get('/favorites')
-                setFavorites(response.data)
-            } catch (error) {
-                console.error("Erro ao buscar favoritos", error)
-            }
+    const fetchFavorites = async () => {
+        try {
+            const response = await api.get('/favorites')
+            setFavorites(response.data)
+        } catch (error) {
+            console.error("Erro ao buscar favoritos", error)
         }
+    }
+
+   useEffect(() => {
         fetchFavorites()
     }, [])
 
     return(
-        <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
-            {children}
+        <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, fetchFavorites }}>
+            {children} 
         </FavoritesContext.Provider>
     )
 }

@@ -7,17 +7,22 @@ import { ButtonBack } from '../../components/ButtonBack/index.jsx'
 
 import { api } from '../../services/api.js'
 
+import { useEffect } from 'react'
 import { useCart } from "../../context/CartContext"
 import { useFavorites } from '../../context/FavoritesContext.jsx'
 
 export function Favorites(){
-    const { favorites, removeFavorite, } = useFavorites()
+    const { favorites, removeFavorite, fetchFavorites } = useFavorites()
     const { addToCart } = useCart()
 
     const formatPrice = (price) => {
         const number = parseFloat(price)
         return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
     }
+
+    useEffect(() => {
+        fetchFavorites()
+    }, [])
     
     return (
     <Container>

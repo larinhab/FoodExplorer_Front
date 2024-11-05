@@ -63,7 +63,6 @@ export function Details() {
            }
         
         useEffect(() => {
-            console.log("useEffect executando")
             async function searchPlate() {
                 try {
                     const response = await api.get(`/plates/${id}`);

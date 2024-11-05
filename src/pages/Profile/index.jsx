@@ -12,7 +12,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { useState } from "react"
 import { api } from '../../services/api.js';
 import { useAuth } from '../../hooks/auth.jsx';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function Profile(){
     const { user, signOut, updateProfile  } = useAuth() 
@@ -20,16 +20,16 @@ export function Profile(){
     const [ email, setEmail ] = useState(user.email)
     const [ passwordOld, setPasswordOld ] = useState()
     const [ passwordNew, setPasswordNew ] = useState()
-    const { id } = useParams()
 
     const navigate = useNavigate();
 
     async function handleUpdate(){
         const updateUser = { 
+            id: user.id,
             name, 
             email,
             password: passwordNew,
-            old_password: passwordOld
+            oldPassword: passwordOld
         }
 
         if(!passwordOld && !passwordNew){
@@ -46,7 +46,7 @@ export function Profile(){
             console.error("Erro ao atualizar senha", error)
         }
         
-    }
+    }   
 
     async function handleDeleteUser(id){
         const confirm = window.confirm("Deseja realmente excluir sua conta? :(")
